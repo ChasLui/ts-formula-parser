@@ -11,14 +11,7 @@ const baseConfig = {
     resolve: {
         extensions: ['.js']
     },
-    plugins: [
-        ...(enableAnalyzer ? [new BundleAnalyzerPlugin({
-            analyzerMode: 'static',
-            openAnalyzer: false,
-            generateStatsFile: true,
-            reportFilename: 'bundle-report.html'
-        })] : [])
-    ],
+    plugins: [],
     optimization: {
         minimize: false  // 非压缩版本
     }
@@ -46,7 +39,15 @@ const umdConfig = {
         library: "FormulaParser",
         libraryTarget: "umd",
         globalObject: 'this'
-    }
+    },
+    plugins: [
+        ...(enableAnalyzer ? [new BundleAnalyzerPlugin({
+            analyzerMode: 'static',
+            openAnalyzer: true,
+            generateStatsFile: true,
+            reportFilename: 'bundle-report.html'
+        })] : [])
+    ]
 };
 
 // UMD 压缩版本
