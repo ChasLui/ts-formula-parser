@@ -2,7 +2,7 @@
 [![npm (tag)](https://img.shields.io/npm/v/fast-formula-parser/latest)](https://www.npmjs.com/package/fast-formula-parser)
 [![npm](https://img.shields.io/npm/dt/fast-formula-parser)](https://www.npmjs.com/package/fast-formula-parser)
 [![Coverage Status](https://coveralls.io/repos/github/ChasLui/fast-formula-parser/badge.svg?branch=master)](https://coveralls.io/github/ChasLui/fast-formula-parser?branch=master)
-[![Build Status](https://travis-ci.com/ChasLui/fast-formula-parser.svg?branch=master)](https://travis-ci.com/ChasLui/fast-formula-parser)
+[![CI](https://github.com/ChasLui/fast-formula-parser/actions/workflows/ci.yml/badge.svg)](https://github.com/ChasLui/fast-formula-parser/actions/workflows/ci.yml)
 ## [A Fast Excel Formula Parser & Evaluator](https://github.com/LesterLyu/fast-formula-parser)
 
 A fast and reliable excel formula parser in javascript. Using **LL(1)** parser.
