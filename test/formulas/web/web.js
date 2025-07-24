@@ -1,6 +1,7 @@
 const {FormulaParser} = require('../../../grammar/hooks');
 const TestCase = require('./testcase');
 const {generateTests} = require('../../utils');
+const expect = require('chai').expect;
 
 const data = [
     ['fruit', 'price', 'count', 4, 5],
@@ -24,4 +25,52 @@ const parser = new FormulaParser({
 
 describe('Web Functions', function () {
     generateTests(parser, TestCase);
+    
+    // 测试没有fetch时的情况
+    describe('WEBSERVICE without fetch', function () {
+        let originalFetch;
+        
+        beforeEach(() => {
+            // 保存并删除全局fetch
+            originalFetch = global.fetch;
+            delete global.fetch;
+        });
+        
+        afterEach(() => {
+            // 恢复全局fetch
+            if (originalFetch) {
+                global.fetch = originalFetch;
+            }
+        });
+        
+        it('should throw error when fetch is not available', () => {
+            const result = parser.parse('WEBSERVICE("http://example.com")', {row: 1, col: 1});
+            const FormulaError = require('../../../formulas/error');
+            expect(FormulaError.ERROR().equals(result)).to.be.true;
+        });
+    });
+    
+    // 额外测试：覆盖WEBSERVICE函数在有fetch时的分支
+    describe('WEBSERVICE with fetch available', function () {
+        beforeEach(() => {
+            // 模拟全局fetch函数
+            global.fetch = () => Promise.resolve({
+                text: () => Promise.resolve('mock response')
+            });
+        });
+        
+        afterEach(() => {
+            delete global.fetch;
+        });
+        
+        it('should handle WEBSERVICE with fetch available', async () => {
+            const result = await parser.parseAsync('WEBSERVICE("http://example.com")', {row: 1, col: 1});
+            expect(result).to.equal('mock response');
+        });
+        
+        it('should validate URL parameter type', async () => {
+            const result = await parser.parseAsync('WEBSERVICE("http://123.com")', {row: 1, col: 1});
+            expect(result).to.equal('mock response');
+        });
+    });
 });
