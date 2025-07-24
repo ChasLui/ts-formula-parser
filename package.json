@@ -33,7 +33,7 @@
     "diagram": "node grammar/diagram.js",
     "docs": "npm run diagram && jsdoc --configure .jsdoc.json --verbose",
     "publish:docs": "npm run docs && npm run coverage && gh-pages -d docs",
-    "coverage": "nyc -x ssf -x test --reporter=html --reporter=text --report-dir=docs/coverage mocha",
+    "coverage": "nyc -x ssf -x test --reporter=html --reporter=text --reporter=lcov --report-dir=docs/coverage mocha",
     "coverage:f": "nyc -n \"formulas/functions/**\" -n \"formulas/operators.js\" --reporter=html --reporter=text mocha test/formulas",
     "coverage:server": "nyc -x ssf -x test --reporter=text-lcov --report-dir=docs/coverage mocha | coveralls"
   },
@@ -56,12 +56,13 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "coveralls": "^3.1.0",
+    "coveralls-next": "^4.2.0",
     "docdash": "^1.2.0",
     "gh-pages": "^6.3.0",
     "jsdoc": "^4.0.4",
     "mocha": "^11.7.1",
     "nyc": "^15.1.0",
+    "taffydb": "^2.7.3",
     "webpack": "^5.100.2",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1"

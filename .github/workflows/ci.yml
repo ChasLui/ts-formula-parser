@@ -17,6 +17,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
       
     - name: Install pnpm
       uses: pnpm/action-setup@v4
@@ -38,8 +40,16 @@ jobs:
       env:
         CI: true
         
-    - name: Upload coverage
-      if: matrix.node-version == 22 && github.event_name == 'push'
-      run: pnpm run coverage:server --if-present
+    - name: Generate coverage report
+      if: matrix.node-version == 22
+      run: pnpm run coverage
       env:
-        CI: true 
+        CI: true
+
+    - name: Coveralls
+      if: matrix.node-version == 22
+      uses: coverallsapp/github-action@v2
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        file: docs/coverage/lcov.info
+        format: lcov 
