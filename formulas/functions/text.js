@@ -562,6 +562,11 @@ const TextFunctions = {
         return text.replace(/^\s+|\s+$/g, '')
     },
 
+    UPPER: (text) => {
+        text = H.accept(text, Types.STRING);
+        return text.toUpperCase();
+    },
+
     UNICHAR: (number) => {
         number = H.accept(number, [Types.NUMBER]);
         if (number <= 0)

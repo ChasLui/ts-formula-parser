@@ -116,7 +116,10 @@ module.exports = {
     },
 
     LOWER: {
-        'LOWER("E. E. Cummings")': "e. e. cummings"
+        'LOWER("E. E. Cummings")': "e. e. cummings",
+        'LOWER("Apt. 2B")': "apt. 2b",
+        'LOWER("HELLO WORLD")': "hello world",
+        'LOWER("123Test")': "123test"
     },
 
     MID: {
@@ -265,6 +268,13 @@ module.exports = {
 
     TRIM: {
         'TRIM("     First Quarter Earnings    ")': "First Quarter Earnings"
+    },
+
+    UPPER: {
+        'UPPER("e. e. cummings")': "E. E. CUMMINGS",
+        'UPPER("total")': "TOTAL",
+        'UPPER("Yield")': "YIELD",
+        'UPPER("abc123")': "ABC123"
     },
 
     UNICHAR: {
