@@ -89,7 +89,9 @@ yarn.lock
 .pnp.*
 .yarn
 build
-docs/
+docs/generated_diagrams.html
+docs/api/
+docs/coverage/
 CLAUDE.md
 .cursor/
 .DS_Store
