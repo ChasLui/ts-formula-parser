@@ -55,13 +55,13 @@
     "jstat": "^1.9.6"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
+    "chai": "^5.2.0",
     "coveralls-next": "^4.2.0",
     "docdash": "^1.2.0",
     "gh-pages": "^6.3.0",
     "jsdoc": "^4.0.4",
     "mocha": "^11.7.1",
-    "nyc": "^15.1.0",
+    "nyc": "^17.1.0",
     "taffydb": "^2.7.3",
     "webpack": "^5.100.2",
     "webpack-bundle-analyzer": "^4.10.2",
