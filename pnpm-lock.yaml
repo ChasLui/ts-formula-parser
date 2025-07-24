@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       bahttext:
-        specifier: ^1.1.0
-        version: 1.1.0
+        specifier: ^2.3.3
+        version: 2.3.3
       bessel:
         specifier: ^1.0.2
         version: 1.0.2
@@ -364,8 +364,8 @@ packages:
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
 
-  bahttext@1.1.0:
-    resolution: {integrity: sha512-3g7DbmCwYhLnnN5hJFB+Mtbst4q2gfXpAdqOMK6tz6FmgtlrhX1n1uhuzkIhEr+WcnFR6eRvebIE5msGuEtA7Q==}
+  bahttext@2.3.3:
+    resolution: {integrity: sha512-KdSkwbTR6w1Qh3WKDGAw3PWifPJQUd2THFrTyvr6QI28Tn0T2YvZeXBd2pDbJss8gjIVboyPBCxJq2abhQGtqA==}
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -1853,7 +1853,7 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  bahttext@1.1.0: {}
+  bahttext@2.3.3: {}
 
   balanced-match@1.0.2: {}
 
