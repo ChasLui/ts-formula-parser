@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/dt/fast-formula-parser)](https://www.npmjs.com/package/fast-formula-parser)
 [![Coverage Status](https://coveralls.io/repos/github/ChasLui/fast-formula-parser/badge.svg?branch=master)](https://coveralls.io/github/ChasLui/fast-formula-parser?branch=master)
 [![CI](https://github.com/ChasLui/fast-formula-parser/actions/workflows/ci.yml/badge.svg)](https://github.com/ChasLui/fast-formula-parser/actions/workflows/ci.yml)
-## [A Fast Excel Formula Parser & Evaluator](https://github.com/LesterLyu/fast-formula-parser)
+## [A Fast Excel Formula Parser & Evaluator](https://github.com/ChasLui/fast-formula-parser)
 
 A fast and reliable excel formula parser in javascript. Using **LL(1)** parser.
 
@@ -316,4 +316,4 @@ Note: The grammar in my implementation is different from theirs. My implementati
     ```
 
 ### Thanks
-- [![JetBrains](https://raw.githubusercontent.com/LesterLyu/fast-formula-parser/master/logos/jetbrains-variant-4.svg)](https://www.jetbrains.com/?from=fast-formula-parser)
+- Forked from the [LesterLyu/fast-formula-parser](https://github.com/LesterLyu/fast-formula-parser) repo
