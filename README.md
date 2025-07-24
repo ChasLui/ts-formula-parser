@@ -1,4 +1,4 @@
-![GitHub](https://img.shields.io/github/license/lesterlyu/fast-formula-parser)
+![GitHub](https://img.shields.io/github/license/ChasLui/fast-formula-parser)
 [![npm (tag)](https://img.shields.io/npm/v/fast-formula-parser/latest)](https://www.npmjs.com/package/fast-formula-parser)
 [![npm](https://img.shields.io/npm/dt/fast-formula-parser)](https://www.npmjs.com/package/fast-formula-parser)
 [![Coverage Status](https://coveralls.io/repos/github/ChasLui/fast-formula-parser/badge.svg?branch=master)](https://coveralls.io/github/ChasLui/fast-formula-parser?branch=master)
@@ -8,8 +8,8 @@
 A fast and reliable excel formula parser in javascript. Using **LL(1)** parser.
 
 ### [Demo](https://lesterlyu.github.io/#/demo/fast-formula-parser)
-### [Documentation](https://lesterlyu.github.io/fast-formula-parser/index.html)
-### [Grammar Diagram](https://lesterlyu.github.io/fast-formula-parser/generated_diagrams.html)
+### [Documentation](https://chaslui.github.io/fast-formula-parser/index.html)
+### [Grammar Diagram](https://chaslui.github.io/fast-formula-parser/generated_diagrams.html)
 ### Supports 280 Formulas
 ```
 ABS, ACOS, ACOSH, ACOT, ACOTH, ADDRESS, AND, ARABIC, AREAS, ASC, ASIN, ASINH, ATAN, ATAN2, ATANH, AVEDEV, AVERAGE, AVERAGEA, AVERAGEIF, BAHTTEXT, BASE, BESSELI, BESSELJ, BESSELK, BESSELY, BETA.DIST, BETA.INV, BIN2DEC, BIN2HEX, BIN2OCT, BINOM.DIST, BINOM.DIST.RANGE, BINOM.INV, BITAND, BITLSHIFT, BITOR,
