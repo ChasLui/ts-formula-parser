@@ -83,4 +83,13 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 package-lock.json
+yarn.lock
+
 .idea/
+.pnp.*
+.yarn
+build
+docs/
+CLAUDE.md
+.cursor/
+.DS_Store

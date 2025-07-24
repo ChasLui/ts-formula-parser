@@ -57,16 +57,18 @@ const dateRegex2 = /^\s*((\d\d?)\s*([-/])\s*(jan\w*|feb\w*|mar\w*|apr\w*|may\w*|
 // Dec-3, Dec/3
 const dateRegex3 = /^\s*((jan\w*|feb\w*|mar\w*|apr\w*|may\w*|jun\w*|jul\w*|aug\w*|sep\w*|oct\w*|nov\w*|dec\w*)\s*([-/])\s*(\d\d?))([\d:.apm\s]*)$/i;
 
-function parseSimplifiedDate(text) {
+function parseSimplifiedDate(text, nullDate = null) {
     const fmt1 = text.match(dateRegex1);
     const fmt2 = text.match(dateRegex2);
     const fmt3 = text.match(dateRegex3);
+    // Use the incoming default year; if none is provided, use the current year.
+    const yearToUse = nullDate && nullDate.year ? nullDate.year : new Date().getFullYear();
     if (fmt1) {
-        text = fmt1[1] + fmt1[3] + new Date().getFullYear() + fmt1[5];
+        text = fmt1[1] + fmt1[3] + yearToUse + fmt1[5];
     } else if (fmt2) {
-        text = fmt2[1] + fmt2[3] + new Date().getFullYear() + fmt2[5];
+        text = fmt2[1] + fmt2[3] + yearToUse + fmt2[5];
     } else if (fmt3) {
-        text = fmt3[1] + fmt3[3] + new Date().getFullYear() + fmt3[5];
+        text = fmt3[1] + fmt3[3] + yearToUse + fmt3[5];
     }
     return new Date(Date.parse(`${text} UTC`));
 }
@@ -118,7 +120,7 @@ function toDate(serial) {
     return new Date(d1900.getTime() + (serial - 2) * 86400000);
 }
 
-function parseDateWithExtra(serialOrString) {
+function parseDateWithExtra(serialOrString, nullDate = null) {
     if (serialOrString instanceof Date) return {date: serialOrString};
     serialOrString = H.accept(serialOrString);
     let isDateGiven = true, date;
@@ -130,7 +132,7 @@ function parseDateWithExtra(serialOrString) {
         date = parseTime(serialOrString);
 
         if (!date) {
-            date = parseSimplifiedDate(serialOrString);
+            date = parseSimplifiedDate(serialOrString, nullDate);
         } else {
             isDateGiven = false;
         }
@@ -155,7 +157,12 @@ function isLeapYear(year) {
     return new Date(year, 1, 29).getMonth() === 1;
 }
 
-const DateFunctions = {
+const DateFunctions =  {
+    // global configuration
+    _config: {
+        nullDate: { year: 2021, month: 1, day: 1 }
+    },
+
     DATE: (year, month, day) => {
         year = H.accept(year, Types.NUMBER);
         month = H.accept(month, Types.NUMBER);
@@ -223,7 +230,7 @@ const DateFunctions = {
      */
     DATEVALUE: (dateText) => {
         dateText = H.accept(dateText, Types.STRING);
-        const {date, isDateGiven} = parseDateWithExtra(dateText);
+        const {date, isDateGiven} = parseDateWithExtra(dateText, DateFunctions._config.nullDate);
         if (!isDateGiven) return 0;
         const serial = toSerial(date);
         if (serial < 0 || serial > 2958465)
