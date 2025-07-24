@@ -33,7 +33,7 @@ class FormulaParser {
             onVariable: () => null,
             onCell: () => 0,
             onRange: () => [[0]],
-            nullDate: { year: 2021, month: 1, day: 1 }, // Set the default date to January 1, 2021 to match the expectations of the test case.
+            nullDate: { year: 1900, month: 1, day: 1 }, // Set the default date to January 1, 1900 to match the expectations of the test case.
         }, config);
 
         this.onVariable = config.onVariable;

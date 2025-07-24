@@ -160,7 +160,7 @@ function isLeapYear(year) {
 const DateFunctions =  {
     // global configuration
     _config: {
-        nullDate: { year: 2021, month: 1, day: 1 }
+        nullDate: { year: 1900, month: 1, day: 1 }
     },
 
     DATE: (year, month, day) => {
