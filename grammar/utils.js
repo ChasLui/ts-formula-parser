@@ -1,9 +1,9 @@
 const FormulaError = require('../formulas/error');
 const {Address} = require('../formulas/helpers');
+const {NotAllInputParsedException} = require('chevrotain');
 const {Prefix, Postfix, Infix, Operators} = require('../formulas/operators');
 const Collection = require('./type/collection');
 const MAX_ROW = 1048576, MAX_COLUMN = 16384;
-const {NotAllInputParsedException} = require('chevrotain');
 
 class Utils {
 
