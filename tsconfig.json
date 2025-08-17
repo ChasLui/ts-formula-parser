@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "declarationMap": false,
+    "outDir": "build",
+    "noEmitOnError": false,
+    "skipLibCheck": true,
+    "strict": false,
+    "module": "esnext",
+    "target": "es2020",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "index.js",
+    "formulas/**/*.js",
+    "grammar/**/*.js",
+    "ssf/**/*.js"
+  ],
+  "exclude": [
+    "test",
+    "docs",
+    "build",
+    "examples"
+  ]
+}
+
