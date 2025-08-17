@@ -61,17 +61,17 @@ Note: The grammar in my implementation is different from theirs. My implementati
 - Install
 
   ```sh
-  npm i @chaslui1/fast-formula-parser
+  npm i @chaslui1/ts-formula-parser
   # or using yarn
-  yarn add @chaslui1/fast-formula-parser
+  yarn add @chaslui1/ts-formula-parser
   # or using pnpm
-  pnpm add @chaslui1/fast-formula-parser
+  pnpm add @chaslui1/ts-formula-parser
   ```
 
 - Import
 
   ```js
-  const FormulaParser = require("@chaslui1/fast-formula-parser");
+  const FormulaParser = require("@chaslui1/ts-formula-parser");
   const { FormulaHelpers, Types, FormulaError, MAX_ROW, MAX_COLUMN } =
     FormulaParser;
   // or
@@ -81,7 +81,7 @@ Note: The grammar in my implementation is different from theirs. My implementati
     FormulaError,
     MAX_ROW,
     MAX_COLUMN,
-  } from "@chaslui1/fast-formula-parser";
+  } from "@chaslui1/ts-formula-parser";
   ```
 
   UMD minified build is also provides:
