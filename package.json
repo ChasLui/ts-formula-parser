@@ -5,11 +5,15 @@
   "repository": "https://github.com/ChasLui/ts-formula-parser",
   "main": "build/index.cjs",
   "module": "build/index.mjs",
-  "unpkg": "build/min/index.mjs",
+  "unpkg": "build/index.umd.min.js",
+  "jsdelivr": "build/index.umd.min.js",
+  "browser": "build/index.mjs",
   "exports": {
     ".": {
       "import": "./build/index.mjs",
-      "require": "./build/index.cjs"
+      "require": "./build/index.cjs",
+      "browser": "./build/index.mjs",
+      "default": "./build/index.mjs"
     }
   },
   "files": [
@@ -63,6 +67,10 @@
     "release-it": "^19.0.4",
     "taffydb": "^2.7.3",
     "unbuild": "^3.6.1"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "engines": {
     "node": ">=22.0.0"
