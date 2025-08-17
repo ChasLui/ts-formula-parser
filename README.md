@@ -1,6 +1,6 @@
 ![GitHub](https://img.shields.io/github/license/ChasLui/ts-formula-parser)
-[![npm (tag)](https://img.shields.io/npm/v/fast-formula-parser/latest)](https://www.npmjs.com/package/fast-formula-parser)
-[![npm](https://img.shields.io/npm/dt/fast-formula-parser)](https://www.npmjs.com/package/fast-formula-parser)
+[![npm (tag)](https://img.shields.io/npm/v/ts-formula-parser/latest)](https://www.npmjs.com/package/ts-formula-parser)
+[![npm](https://img.shields.io/npm/dt/ts-formula-parser)](https://www.npmjs.com/package/ts-formula-parser)
 [![Coverage Status](https://coveralls.io/repos/github/ChasLui/ts-formula-parser/badge.svg?branch=master)](https://coveralls.io/github/ChasLui/ts-formula-parser?branch=master)
 [![CI](https://github.com/ChasLui/ts-formula-parser/actions/workflows/ci.yml/badge.svg)](https://github.com/ChasLui/ts-formula-parser/actions/workflows/ci.yml)
 
@@ -12,9 +12,9 @@ A fast and reliable excel formula parser in javascript. Using **LL(1)** parser.
 
 ### [Demo](https://lesterlyu.github.io/#/demo/fast-formula-parser)
 
-### [Documentation](https://chaslui.github.io/fast-formula-parser/index.html)
+### [Documentation](https://chaslui.github.io/ts-formula-parser/index.html)
 
-### [Grammar Diagram](https://chaslui.github.io/fast-formula-parser/generated_diagrams.html)
+### [Grammar Diagram](https://chaslui.github.io/ts-formula-parser/generated_diagrams.html)
 
 ### Supports 283 Formulas
 
