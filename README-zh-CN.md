@@ -1,10 +1,10 @@
-![GitHub](https://img.shields.io/github/license/ChasLui/fast-formula-parser)
+![GitHub](https://img.shields.io/github/license/ChasLui/ts-formula-parser)
 [![npm (tag)](https://img.shields.io/npm/v/fast-formula-parser/latest)](https://www.npmjs.com/package/fast-formula-parser)
 [![npm](https://img.shields.io/npm/dt/fast-formula-parser)](https://www.npmjs.com/package/fast-formula-parser)
-[![Coverage Status](https://coveralls.io/repos/github/ChasLui/fast-formula-parser/badge.svg?branch=master)](https://coveralls.io/github/ChasLui/fast-formula-parser?branch=master)
-[![CI](https://github.com/ChasLui/fast-formula-parser/actions/workflows/ci.yml/badge.svg)](https://github.com/ChasLui/fast-formula-parser/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/ChasLui/ts-formula-parser/badge.svg?branch=master)](https://coveralls.io/github/ChasLui/ts-formula-parser?branch=master)
+[![CI](https://github.com/ChasLui/ts-formula-parser/actions/workflows/ci.yml/badge.svg)](https://github.com/ChasLui/ts-formula-parser/actions/workflows/ci.yml)
 
-## [快速的 Excel 公式解析器和求值器](https://github.com/ChasLui/fast-formula-parser)
+## [快速的 Excel 公式解析器和求值器](https://github.com/ChasLui/ts-formula-parser)
 
 [英文](./README.md) | 中文
 

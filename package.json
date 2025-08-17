@@ -2,7 +2,7 @@
   "name": "fast-formula-parser",
   "version": "1.0.19",
   "description": "fast excel formula parser",
-  "repository": "https://github.com/ChasLui/fast-formula-parser",
+  "repository": "https://github.com/ChasLui/ts-formula-parser",
   "main": "build/parser.cjs.js",
   "module": "build/parser.esm.js",
   "unpkg": "build/parser.umd.min.js",
