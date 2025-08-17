@@ -61,17 +61,17 @@ SUMX2PY2, SUMXMY2, T, T.DIST, T.DIST.2T, T.DIST.RT, T.INV, T.INV.2T, TAN, TANH, 
 - 安装
 
   ```sh
-  npm i @chaslui1/ts-formula-parser
+  npm i ts-formula-parser
   # 或使用 yarn
-  yarn add @chaslui1/ts-formula-parser
+  yarn add ts-formula-parser
   # 或使用 pnpm
-  pnpm add @chaslui1/ts-formula-parser
+  pnpm add ts-formula-parser
   ```
 
 - 导入
 
   ```js
-  const FormulaParser = require("@chaslui1/ts-formula-parser");
+  const FormulaParser = require("ts-formula-parser");
   const { FormulaHelpers, Types, FormulaError, MAX_ROW, MAX_COLUMN } =
     FormulaParser;
   // 或者
@@ -81,7 +81,7 @@ SUMX2PY2, SUMXMY2, T, T.DIST, T.DIST.2T, T.DIST.RT, T.INV, T.INV.2T, TAN, TANH, 
     FormulaError,
     MAX_ROW,
     MAX_COLUMN,
-  } from "@chaslui1/ts-formula-parser";
+  } from "ts-formula-parser";
   ```
 
   同时提供 UMD 压缩版本：
