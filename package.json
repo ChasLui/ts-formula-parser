@@ -3,15 +3,13 @@
   "version": "0.0.1",
   "description": "excel formula parser based on typescript",
   "repository": "https://github.com/ChasLui/ts-formula-parser",
-  "main": "build/parser.cjs.js",
-  "module": "build/parser.esm.js",
-  "unpkg": "build/parser.umd.min.js",
-  "types": "index.d.ts",
+  "main": "build/index.cjs",
+  "module": "build/index.mjs",
+  "unpkg": "build/min/index.mjs",
   "exports": {
     ".": {
-      "import": "./build/parser.esm.js",
-      "require": "./build/parser.cjs.js",
-      "umd": "./build/parser.umd.js"
+      "import": "./build/index.mjs",
+      "require": "./build/index.cjs"
     }
   },
   "files": [
@@ -27,9 +25,9 @@
     "test:f": "mocha test/formulas",
     "prepublishOnly": "npm run build && npm run test",
     "postpublish": "npm run publish:docs",
-    "build": "webpack",
-    "build:dev": "webpack --mode=development",
-    "analyze": "ANALYZE=true webpack",
+    "build": "unbuild",
+    "build:dev": "unbuild --stub",
+    "analyze": "echo 'bundle analyze is not supported by unbuild directly'",
     "diagram": "node grammar/diagram.js",
     "docs": "npm run diagram && jsdoc --configure .jsdoc.json --verbose",
     "publish:docs": "npm run docs && npm run coverage && gh-pages -d docs",
@@ -64,9 +62,7 @@
     "nyc": "^17.1.0",
     "release-it": "^19.0.4",
     "taffydb": "^2.7.3",
-    "webpack": "^5.100.2",
-    "webpack-bundle-analyzer": "^4.10.2",
-    "webpack-cli": "^6.0.1"
+    "unbuild": "^3.6.1"
   },
   "engines": {
     "node": ">=22.0.0"
