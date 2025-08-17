@@ -1,7 +1,7 @@
 {
-  "name": "fast-formula-parser",
-  "version": "1.0.19",
-  "description": "fast excel formula parser",
+  "name": "ts-formula-parser",
+  "version": "0.0.1",
+  "description": "excel formula parser based on typescript",
   "repository": "https://github.com/ChasLui/ts-formula-parser",
   "main": "build/parser.cjs.js",
   "module": "build/parser.esm.js",
