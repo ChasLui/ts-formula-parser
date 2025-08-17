@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>grammar/dependency/hooks.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Collection.html">Collection</a><ul class='methods'><li data-type='method'><a href="Collection.html#add">add</a></li></ul></li><li><a href="DepParser.html">DepParser</a><ul class='methods'><li data-type='method'><a href="DepParser.html#callFunction">callFunction</a></li><li data-type='method'><a href="DepParser.html#checkFormulaResult">checkFormulaResult</a></li><li data-type='method'><a href="DepParser.html#getCell">getCell</a></li><li data-type='method'><a href="DepParser.html#getRange">getRange</a></li><li data-type='method'><a href="DepParser.html#getVariable">getVariable</a></li><li data-type='method'><a href="DepParser.html#parse">parse</a></li><li data-type='method'><a href="DepParser.html#retrieveRef">retrieveRef</a></li></ul></li><li><a href="FormulaError.html">FormulaError</a><ul class='methods'><li data-type='method'><a href="FormulaError.html#equals">equals</a></li><li data-type='method'><a href="FormulaError.html#toString">toString</a></li></ul></li><li><a href="FormulaError.ARG_MISSING.html">ARG_MISSING</a></li><li><a href="FormulaError.ERROR.html">ERROR</a></li><li><a href="FormulaError.NOT_IMPLEMENTED.html">NOT_IMPLEMENTED</a></li><li><a href="FormulaError.TOO_MANY_ARGS.html">TOO_MANY_ARGS</a></li><li><a href="FormulaHelpers.html">FormulaHelpers</a><ul class='methods'><li data-type='method'><a href="FormulaHelpers.html#accept">accept</a></li><li data-type='method'><a href="FormulaHelpers.html#acceptNumber">acceptNumber</a></li><li data-type='method'><a href="FormulaHelpers.html#flattenDeep">flattenDeep</a></li><li data-type='method'><a href="FormulaHelpers.html#flattenParams">flattenParams</a></li><li data-type='method'><a href="FormulaHelpers.html#retrieveRanges">retrieveRanges</a></li></ul></li><li><a href="FormulaParser.html">FormulaParser</a><ul class='methods'><li data-type='method'><a href="FormulaParser.html#_callFunction">_callFunction</a></li><li data-type='method'><a href="FormulaParser.html#checkFormulaResult">checkFormulaResult</a></li><li data-type='method'><a href="FormulaParser.html#getCell">getCell</a></li><li data-type='method'><a href="FormulaParser.html#getRange">getRange</a></li><li data-type='method'><a href="FormulaParser.html#getVariable">getVariable</a></li><li data-type='method'><a href="FormulaParser.html#parse">parse</a></li><li data-type='method'><a href="FormulaParser.html#parseAsync">parseAsync</a></li><li data-type='method'><a href="FormulaParser.html#retrieveRef">retrieveRef</a></li><li data-type='method'><a href="FormulaParser.html#supportedFunctions">supportedFunctions</a></li></ul></li><li><a href="Parsing.html">Parsing</a></li><li><a href="SSF.html">SSF</a><ul class='methods'><li data-type='method'><a href="SSF.html#.get_table">get_table</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#At">At</a></li><li><a href="global.html#parseTime">parseTime</a></li><li><a href="global.html#toDate">toDate</a></li><li><a href="global.html#toSerial">toSerial</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">grammar/dependency/hooks.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const FormulaError = require('../../formulas/error');
+const {FormulaHelpers} = require('../../formulas/helpers');
+const {Parser} = require('../parsing');
+const lexer = require('../lexing');
+const Utils = require('./utils');
+const {formatChevrotainError} = require('../utils');
+
+class DepParser {
+
+    /**
+     *
+     * @param {{onVariable: Function}} [config]
+     */
+    constructor(config) {
+        this.data = [];
+        this.utils = new Utils(this);
+        config = Object.assign({
+            onVariable: () => null,
+        }, config);
+        this.utils = new Utils(this);
+
+        this.onVariable = config.onVariable;
+        this.functions = {}
+
+        this.parser = new Parser(this, this.utils);
+    }
+
+    /**
+     * Get value from the cell reference
+     * @param ref
+     * @return {*}
+     */
+    getCell(ref) {
+        // console.log('get cell', JSON.stringify(ref));
+        if (ref.row != null) {
+            if (ref.sheet == null)
+                ref.sheet = this.position ? this.position.sheet : undefined;
+            const idx = this.data.findIndex(element => {
+                return (element.from &amp;&amp; element.from.row &lt;= ref.row &amp;&amp; element.to.row >= ref.row
+                    &amp;&amp; element.from.col &lt;= ref.col &amp;&amp; element.to.col >= ref.col)
+                    || (element.row === ref.row &amp;&amp; element.col === ref.col &amp;&amp; element.sheet === ref.sheet)
+            });
+            if (idx === -1)
+                this.data.push(ref);
+        }
+        return 0;
+    }
+
+    /**
+     * Get values from the range reference.
+     * @param ref
+     * @return {*}
+     */
+    getRange(ref) {
+        // console.log('get range', JSON.stringify(ref));
+        if (ref.from.row != null) {
+            if (ref.sheet == null)
+                ref.sheet = this.position ? this.position.sheet : undefined;
+
+            const idx = this.data.findIndex(element => {
+                return element.from &amp;&amp; element.from.row === ref.from.row &amp;&amp; element.from.col === ref.from.col
+                    &amp;&amp; element.to.row === ref.to.row &amp;&amp; element.to.col === ref.to.col;
+            });
+            if (idx === -1)
+                this.data.push(ref);
+        }
+        return [[0]]
+    }
+
+    /**
+     * TODO:
+     * Get references or values from a user defined variable.
+     * @param name
+     * @return {*}
+     */
+    getVariable(name) {
+        // console.log('get variable', name);
+        const res = {ref: this.onVariable(name, this.position.sheet)};
+        if (res.ref == null)
+            return FormulaError.NAME;
+        if (FormulaHelpers.isCellRef(res))
+            this.getCell(res.ref);
+        else {
+            this.getRange(res.ref);
+        }
+        return 0;
+    }
+
+    /**
+     * Retrieve values from the given reference.
+     * @param valueOrRef
+     * @return {*}
+     */
+    retrieveRef(valueOrRef) {
+        if (FormulaHelpers.isRangeRef(valueOrRef)) {
+            return this.getRange(valueOrRef.ref);
+        }
+        if (FormulaHelpers.isCellRef(valueOrRef)) {
+            return this.getCell(valueOrRef.ref)
+        }
+        return valueOrRef;
+    }
+
+    /**
+     * Call an excel function.
+     * @param name - Function name.
+     * @param args - Arguments that pass to the function.
+     * @return {*}
+     */
+    callFunction(name, args) {
+        args.forEach(arg => {
+            if (arg == null)
+                return;
+            this.retrieveRef(arg);
+        });
+        return {value: 0, ref: {}};
+    }
+
+    /**
+     * Check and return the appropriate formula result.
+     * @param result
+     * @return {*}
+     */
+    checkFormulaResult(result) {
+        this.retrieveRef(result);
+    }
+
+    /**
+     * Parse an excel formula and return the dependencies
+     * @param {string} inputText
+     * @param {{row: number, col: number, sheet: string}} position
+     * @param {boolean} [ignoreError=false] if true, throw FormulaError when error occurred.
+     *                                      if false, the parser will return partial dependencies.
+     * @returns {Array.&lt;{}>}
+     */
+    parse(inputText, position, ignoreError = false) {
+        if (inputText.length === 0) throw Error('Input must not be empty.');
+        this.data = [];
+        this.position = position;
+        const lexResult = lexer.lex(inputText);
+        this.parser.input = lexResult.tokens;
+        try {
+            const res = this.parser.formulaWithBinaryOp();
+            this.checkFormulaResult(res);
+        } catch (e) {
+            if (!ignoreError) {
+                throw FormulaError.ERROR(e.message, e);
+            }
+        }
+        if (this.parser.errors.length > 0 &amp;&amp; !ignoreError) {
+            const error = this.parser.errors[0];
+            throw formatChevrotainError(error, inputText);
+        }
+
+        return this.data;
+    }
+}
+
+module.exports = {
+    DepParser,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> on Sun Aug 17 2025 10:51:58 GMT+0800 (中国标准时间) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>
