@@ -1,5 +1,5 @@
-const expect = require('chai').expect;
-const {DepParser} = require('../../grammar/dependency/hooks');
+import { expect } from 'chai';
+import {DepParser} from '../../grammar/dependency/hooks.js';
 
 const depParser = new DepParser({
     onVariable: variable => {

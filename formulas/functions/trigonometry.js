@@ -1,5 +1,5 @@
-const FormulaError = require('../error');
-const {FormulaHelpers, Types} = require('../helpers');
+import FormulaError from '../error.js';
+import {FormulaHelpers, Types} from '../helpers.js';
 const H = FormulaHelpers;
 const MAX_NUMBER = 2 ** 27 - 1;
 
@@ -142,4 +142,4 @@ const TrigFunctions = {
     },
 };
 
-module.exports = TrigFunctions;
+export default TrigFunctions;

@@ -1,18 +1,18 @@
-const TextFunctions = require('../formulas/functions/text');
-const MathFunctions = require('../formulas/functions/math');
-const TrigFunctions = require('../formulas/functions/trigonometry');
-const LogicalFunctions = require('../formulas/functions/logical');
-const EngFunctions = require('../formulas/functions/engineering');
-const ReferenceFunctions = require('../formulas/functions/reference');
-const InformationFunctions = require('../formulas/functions/information');
-const StatisticalFunctions = require('../formulas/functions/statistical');
-const DateFunctions = require('../formulas/functions/date');
-const WebFunctions = require('../formulas/functions/web');
-const FormulaError = require('../formulas/error');
-const {FormulaHelpers} = require('../formulas/helpers');
-const {Parser, allTokens} = require('./parsing');
-const lexer = require('./lexing');
-const Utils = require('./utils');
+import TextFunctions from '../formulas/functions/text.js';
+import MathFunctions from '../formulas/functions/math.js';
+import TrigFunctions from '../formulas/functions/trigonometry.js';
+import LogicalFunctions from '../formulas/functions/logical.js';
+import EngFunctions from '../formulas/functions/engineering.js';
+import ReferenceFunctions from '../formulas/functions/reference.js';
+import InformationFunctions from '../formulas/functions/information.js';
+import StatisticalFunctions from '../formulas/functions/statistical.js';
+import DateFunctions from '../formulas/functions/date.js';
+import WebFunctions from '../formulas/functions/web.js';
+import FormulaError from '../formulas/error.js';
+import {FormulaHelpers} from '../formulas/helpers.js';
+import {Parser, allTokens} from './parsing.js';
+import lexer from './lexing.js';
+import Utils from './utils.js';
 
 /**
  * A Excel Formula Parser & Evaluator
@@ -353,7 +353,7 @@ class FormulaParser {
     }
 }
 
-module.exports = {
+export {
     FormulaParser,
     FormulaHelpers,
 };

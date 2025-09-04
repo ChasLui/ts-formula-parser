@@ -8,7 +8,16 @@
 
 [英文](./README.md) | 中文
 
-一个快速且可靠的 JavaScript Excel 公式解析器。使用 **LL(1)** 解析器。
+一个快速且可靠的 TypeScript/JavaScript Excel 公式解析器，完全支持 **ESM**。使用 **LL(1)** 解析器。
+
+### 🔥 核心特性
+
+- ✅ **ESM 优先**: 原生 ES Module 支持，包含 TypeScript 定义
+- ⚡ **高性能**: 比其他公式解析器快 3 倍
+- 🧮 **287个 Excel 函数**: 全面的 Excel 函数支持
+- 🏗️ **多种构建格式**: ESM、CJS、UMD、IIFE 及其压缩版本
+- 🔒 **类型安全**: 完整的 TypeScript 支持和详细的类型定义
+- 📦 **零配置**: 在现代 Node.js (>=22.0.0) 中开箱即用
 
 ### [演示](https://lesterlyu.github.io/#/demo/fast-formula-parser)
 
@@ -16,7 +25,7 @@
 
 ### [语法图表](https://chaslui.github.io/ts-formula-parser/generated_diagrams.html)
 
-### 支持 280 种公式
+### 支持 287 种公式
 
 ```
 ABS, ACOS, ACOSH, ACOT, ACOTH, ADDRESS, AND, ARABIC, AREAS, ASC, ASIN, ASINH, ATAN, ATAN2, ATANH, AVEDEV, AVERAGE, AVERAGEA, AVERAGEIF, BAHTTEXT, BASE, BESSELI, BESSELJ, BESSELK, BESSELY, BETA.DIST, BETA.INV, BIN2DEC, BIN2HEX, BIN2OCT, BINOM.DIST, BINOM.DIST.RANGE, BINOM.INV, BITAND, BITLSHIFT, BITOR,
@@ -29,7 +38,13 @@ PHI, PI, POISSON.DIST, POWER, PRODUCT, PROPER, QUOTIENT, RADIANS, RAND, RANDBETW
 SUMX2PY2, SUMXMY2, T, T.DIST, T.DIST.2T, T.DIST.RT, T.INV, T.INV.2T, TAN, TANH, TEXT, TIME, TIMEVALUE, TODAY, TRANSPOSE, TRIM, UPPER, TRUE, TRUNC, TYPE, UNICHAR, UNICODE, VLOOKUP, WEBSERVICE, WEEKDAY, WEEKNUM, WEIBULL.DIST, WORKDAY, WORKDAY.INTL, XOR, YEAR, YEARFRAC
 ```
 
-### 大小：291KB 压缩版，81KB Gzip 压缩版
+### 包大小: 108KB 压缩版，~30KB Gzip 压缩版
+
+### 系统要求
+
+- **Node.js**: >=22.0.0
+- **包管理器**: npm、yarn 或 **pnpm**（推荐）
+- **模块系统**: ESM（ES 模块）- 通过构建输出也支持 CommonJS
 
 ### 背景
 

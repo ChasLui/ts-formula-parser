@@ -1,8 +1,8 @@
-const FormulaError = require('../error');
-const {FormulaHelpers, Types} = require('../helpers');
+import FormulaError from '../error.js';
+import {FormulaHelpers, Types} from '../helpers.js';
 const H = FormulaHelpers;
-const jStat = require("jstat");
-const MathFunctions = require('./math');
+import jStat from 'jstat';
+import MathFunctions from './math.js';
 const SQRT2PI = 2.5066282746310002;
 
 const DistributionFunctions = {
@@ -1143,6 +1143,6 @@ const DistributionFunctions = {
 };
 
 
-module.exports = {
+export {
     DistributionFunctions,
 };

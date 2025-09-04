@@ -1,6 +1,6 @@
-const FormulaError = require('../error');
-const {FormulaHelpers, Types, WildCard, Address} = require('../helpers');
-const Collection = require('../../grammar/type/collection');
+import FormulaError from '../error.js';
+import {FormulaHelpers, Types, WildCard, Address} from '../helpers.js';
+import Collection from '../../grammar/type/collection.js';
 const H = FormulaHelpers;
 
 const ReferenceFunctions = {
@@ -372,4 +372,4 @@ const ReferenceFunctions = {
     },
 };
 
-module.exports = ReferenceFunctions;
+export default ReferenceFunctions;

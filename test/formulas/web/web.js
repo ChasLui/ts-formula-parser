@@ -1,7 +1,8 @@
-const {FormulaParser} = require('../../../grammar/hooks');
-const TestCase = require('./testcase');
-const {generateTests} = require('../../utils');
-const expect = require('chai').expect;
+import {FormulaParser} from '../../../grammar/hooks.js';
+import TestCase from './testcase.js';
+import {generateTests} from '../../utils.js';
+import { expect } from 'chai';
+import FormulaError from '../../../formulas/error.js';
 
 const data = [
     ['fruit', 'price', 'count', 4, 5],
@@ -45,7 +46,6 @@ describe('Web Functions', function () {
         
         it('should throw error when fetch is not available', () => {
             const result = parser.parse('WEBSERVICE("http://example.com")', {row: 1, col: 1});
-            const FormulaError = require('../../../formulas/error');
             expect(FormulaError.ERROR().equals(result)).to.be.true;
         });
     });

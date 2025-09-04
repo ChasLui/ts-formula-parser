@@ -1343,4 +1343,4 @@ SSF.init_table = init_table;
  */
 SSF.format = format;
 
-module.exports = SSF;
+export default SSF;

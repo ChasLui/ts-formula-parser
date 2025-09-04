@@ -1,7 +1,7 @@
-const expect = require('chai').expect;
-const FormulaError = require('../../formulas/error');
-const {FormulaParser} = require('../../grammar/hooks');
-const {MAX_ROW, MAX_COLUMN} = require('../../index');
+import { expect } from 'chai';
+import FormulaError from '../../formulas/error.js';
+import {FormulaParser} from '../../grammar/hooks.js';
+import {MAX_ROW, MAX_COLUMN} from '../../index.js';
 
 const parser = new FormulaParser({
         onCell: ref => {

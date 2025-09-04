@@ -1,6 +1,6 @@
-const FormulaError = require('../error');
-const {FormulaHelpers: H, Types} = require('../helpers');
-const {DATEVALUE, YEARFRAC} = require('./date');
+import FormulaError from '../error.js';
+import {FormulaHelpers as H, Types} from '../helpers.js';
+import {DATEVALUE, YEARFRAC} from './date.js';
 
 const FinancialFunctions = {
     /**
@@ -56,3 +56,5 @@ const FinancialFunctions = {
 
     }
 };
+
+export default FinancialFunctions;

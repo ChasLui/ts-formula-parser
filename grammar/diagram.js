@@ -1,6 +1,6 @@
-const fs = require("fs");
-const chevrotain = require("chevrotain");
-const {Parser} = require("../grammar/parsing");
+import fs from 'fs';
+import * as chevrotain from 'chevrotain';
+import {Parser} from './parsing.js';
 
 // extract the serialized grammar.
 const parserInstance = new Parser();

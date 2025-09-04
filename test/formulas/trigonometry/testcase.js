@@ -1,5 +1,5 @@
-const FormulaError = require('../../../formulas/error');
-module.exports = {
+import FormulaError from '../../../formulas/error.js';
+export default {
     ACOS: {
         'ACOS(-0.5)': 2.094395102,
         'ACOS(-0.5)*180/PI()': 120,

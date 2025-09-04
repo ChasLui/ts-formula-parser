@@ -1,6 +1,5 @@
-const lexer = require('./lexing');
-const {EmbeddedActionsParser} = require("chevrotain");
-const tokenVocabulary = lexer.tokenVocabulary;
+import lexer, { tokenVocabulary } from './lexing.js';
+import {EmbeddedActionsParser} from 'chevrotain';
 const {
     String,
     SheetQuoted,
@@ -388,6 +387,7 @@ class Parsing extends EmbeddedActionsParser {
     }
 }
 
-module.exports = {
-    Parser: Parsing,
+export {
+    Parsing as Parser,
 };
+export const allTokens = [...Object.values(tokenVocabulary)];

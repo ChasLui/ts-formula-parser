@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "excel formula parser based on typescript",
   "repository": "https://github.com/ChasLui/ts-formula-parser",
-  "main": "build/index.cjs",
+  "type": "module",
+  "main": "build/index.mjs",
   "module": "build/index.mjs",
   "types": "index.d.ts",
   "unpkg": "build/index.umd.min.js",
@@ -14,6 +15,7 @@
       "import": "./build/index.mjs",
       "require": "./build/index.cjs",
       "browser": "./build/index.mjs",
+      "types": "./index.d.ts",
       "default": "./build/index.mjs"
     }
   },
@@ -55,21 +57,21 @@
   "dependencies": {
     "bahttext": "^2.3.3",
     "bessel": "^1.0.2",
-    "chevrotain": "^10.5.0",
+    "chevrotain": "^11.0.3",
     "jstat": "^1.9.6"
   },
   "devDependencies": {
-    "chai": "^5.2.0",
-    "coveralls-next": "^4.2.0",
-    "docdash": "^1.2.0",
+    "chai": "^6.0.1",
+    "coveralls-next": "^5.0.0",
+    "docdash": "^2.0.2",
     "gh-pages": "^6.3.0",
     "jsdoc": "^4.0.4",
     "mocha": "^11.7.1",
     "nyc": "^17.1.0",
     "release-it": "^19.0.4",
     "taffydb": "^2.7.3",
-    "unbuild": "^3.6.1",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "unbuild": "^3.6.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

@@ -1,5 +1,5 @@
-const {createToken, Lexer} = require('chevrotain');
-const FormulaError = require('../formulas/error')
+import {createToken, Lexer} from 'chevrotain';
+import FormulaError from '../formulas/error.js';
 
 // the vocabulary will be exported and used in the Parser definition.
 const tokenVocabulary = {};
@@ -254,7 +254,7 @@ allTokens.forEach(tokenType => {
     tokenVocabulary[tokenType.name] = tokenType
 });
 
-module.exports = {
+const lexer = {
     tokenVocabulary: tokenVocabulary,
 
     lex: function (inputText) {
@@ -273,3 +273,6 @@ module.exports = {
         return lexingResult
     }
 };
+
+export default lexer;
+export { tokenVocabulary };

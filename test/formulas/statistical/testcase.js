@@ -1,4 +1,4 @@
-const FormulaError = require('../../../formulas/error');
+import FormulaError from '../../../formulas/error.js';
 const tests = {
 
     AVEDEV: {
@@ -540,4 +540,4 @@ const distributions = {
 
 };
 
-module.exports = Object.assign(distributions, tests);
+export default Object.assign(distributions, tests);

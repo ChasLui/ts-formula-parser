@@ -1,12 +1,12 @@
-const FormulaError = require('../error');
-const {FormulaHelpers, Types, WildCard} = require('../helpers');
+import FormulaError from '../error.js';
+import {FormulaHelpers, Types, WildCard} from '../helpers.js';
 const H = FormulaHelpers;
 
 // Spreadsheet number format
-const ssf = require('../../ssf/ssf');
+import ssf from '../../ssf/ssf.js';
 
 // Change number to Thai pronunciation string
-const { bahttext } = require('bahttext');
+import { bahttext } from 'bahttext';
 
 // full-width and half-width converter
 const charsets = {
@@ -520,7 +520,7 @@ const TextFunctions = {
 
     TEXTJOIN: (delimiter, ignoreEmpty, ...texts) => {
         // Verify the number of parameters; at least 3 parameters are required.
-        if (arguments.length < 3) {
+        if (texts.length < 1) {
             throw new Error('TEXTJOIN requires at least 3 arguments.');
         }
         
@@ -579,4 +579,4 @@ const TextFunctions = {
     },
 };
 
-module.exports = TextFunctions;
+export default TextFunctions;

@@ -1,5 +1,5 @@
-const FormulaError = require('../../../formulas/error');
-module.exports = {
+import FormulaError from '../../../formulas/error.js';
+export default {
     'ERROR.TYPE': {
         'ERROR.TYPE(#NULL!)': 1,
         'ERROR.TYPE(#DIV/0!)': 2,

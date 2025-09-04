@@ -1,5 +1,5 @@
-const FormulaError = require('../../../formulas/error');
-module.exports = {
+import FormulaError from '../../../formulas/error.js';
+export default {
     BESSELI: {
         'BESSELI("1.5", 1)': 0.981666428,
         'BESSELI(1.5, 1)': 0.981666428,

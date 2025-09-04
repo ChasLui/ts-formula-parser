@@ -1,5 +1,5 @@
-const FormulaError = require('../../../formulas/error');
-module.exports = {
+import FormulaError from '../../../formulas/error.js';
+export default {
     DATE: {
         'DATE(108,1,2)': 39449,
         'DATE(1,1,2)': 368,

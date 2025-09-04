@@ -1,5 +1,5 @@
-const FormulaError = require('../error');
-const {FormulaHelpers, Types,} = require('../helpers');
+import FormulaError from '../error.js';
+import {FormulaHelpers, Types} from '../helpers.js';
 const H = FormulaHelpers;
 
 /**
@@ -114,4 +114,4 @@ const LogicalFunctions = {
     },
 };
 
-module.exports = LogicalFunctions;
+export default LogicalFunctions;

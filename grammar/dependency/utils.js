@@ -1,7 +1,7 @@
-const FormulaError = require('../../formulas/error');
-const {FormulaHelpers, Types, Address} = require('../../formulas/helpers');
-const {Prefix, Postfix, Infix, Operators} = require('../../formulas/operators');
-const Collection = require('../type/collection');
+import FormulaError from '../../formulas/error.js';
+import {FormulaHelpers, Types, Address} from '../../formulas/helpers.js';
+import {Prefix, Postfix, Infix, Operators} from '../../formulas/operators.js';
+import Collection from '../type/collection.js';
 const MAX_ROW = 1048576, MAX_COLUMN = 16384;
 
 class Utils {
@@ -288,4 +288,4 @@ class Utils {
     }
 }
 
-module.exports = Utils;
+export default Utils;

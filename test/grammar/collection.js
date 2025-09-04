@@ -1,5 +1,5 @@
-const expect = require('chai').expect;
-const Collection = require('../../grammar/type/collection');
+import { expect } from 'chai';
+import Collection from '../../grammar/type/collection.js';
 
 describe('Collection', () => {
     it('should throw error', function () {

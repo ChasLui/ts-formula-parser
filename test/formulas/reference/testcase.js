@@ -1,5 +1,5 @@
-const FormulaError = require('../../../formulas/error');
-module.exports = {
+import FormulaError from '../../../formulas/error.js';
+export default {
     ADDRESS: {
         'ADDRESS(2,3)': '$C$2',
         'ADDRESS(2,3, 1)': '$C$2',

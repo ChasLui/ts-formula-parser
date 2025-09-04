@@ -8,7 +8,16 @@
 
 English | [Chinese](./README-zh-CN.md)
 
-A fast and reliable excel formula parser in javascript. Using **LL(1)** parser.
+A fast and reliable excel formula parser in TypeScript/JavaScript with full **ESM** support. Using **LL(1)** parser.
+
+### 🔥 Key Features
+
+- ✅ **ESM First**: Native ES Module support with TypeScript definitions
+- ⚡ **High Performance**: 3x faster than other formula parsers
+- 🧮 **287 Excel Functions**: Comprehensive Excel function support
+- 🏗️ **Multiple Build Formats**: ESM, CJS, UMD, IIFE with minified versions
+- 🔒 **Type Safe**: Full TypeScript support with detailed type definitions
+- 📦 **Zero Config**: Works out-of-the-box with modern Node.js (>=22.0.0)
 
 ### [Demo](https://lesterlyu.github.io/#/demo/fast-formula-parser)
 
@@ -16,7 +25,7 @@ A fast and reliable excel formula parser in javascript. Using **LL(1)** parser.
 
 ### [Grammar Diagram](https://chaslui.github.io/ts-formula-parser/generated_diagrams.html)
 
-### Supports 283 Formulas
+### Supports 287 Formulas
 
 ```
 ABS, ACOS, ACOSH, ACOT, ACOTH, ADDRESS, AND, ARABIC, AREAS, ASC, ASIN, ASINH, ATAN, ATAN2, ATANH, AVEDEV, AVERAGE, AVERAGEA, AVERAGEIF, BAHTTEXT, BASE, BESSELI, BESSELJ, BESSELK, BESSELY, BETA.DIST, BETA.INV, BIN2DEC, BIN2HEX, BIN2OCT, BINOM.DIST, BINOM.DIST.RANGE, BINOM.INV, BITAND, BITLSHIFT, BITOR,
@@ -29,7 +38,13 @@ PHI, PI, POISSON.DIST, POWER, PRODUCT, PROPER, QUOTIENT, RADIANS, RAND, RANDBETW
 SUMX2PY2, SUMXMY2, T, T.DIST, T.DIST.2T, T.DIST.RT, T.INV, T.INV.2T, TAN, TANH, TEXT, TIME, TIMEVALUE, TODAY, TRANSPOSE, TRIM, UPPER, TRUE, TRUNC, TYPE, UNICHAR, UNICODE, VLOOKUP, WEBSERVICE, WEEKDAY, WEEKNUM, WEIBULL.DIST, WORKDAY, WORKDAY.INTL, XOR, YEAR, YEARFRAC
 ```
 
-### Size: 291KB Minified, 81KB Gzipped+Minified
+### Bundle Size: 108KB Minified, ~30KB Gzipped+Minified
+
+### Requirements
+
+- **Node.js**: >=22.0.0
+- **Package Manager**: npm, yarn, or **pnpm** (recommended)
+- **Module System**: ESM (ES Modules) - CommonJS also supported via build outputs
 
 ### Background
 
@@ -50,44 +65,83 @@ Note: The grammar in my implementation is different from theirs. My implementati
 
 ### Performance
 
-- The expected performance is at least 3x faster than the optimized [formula-parser](https://github.com/LesterLyu/formula-parser).
+- **3x faster** than the optimized [formula-parser](https://github.com/LesterLyu/formula-parser)
+- **LL(1) parsing** for optimal performance
+- **Optimized bundle sizes** across all build formats:
+  - ESM: 228KB / 108KB minified
+  - CJS: 230KB / 121KB minified  
+  - UMD: 258KB / 109KB minified
+  - IIFE: 258KB / 108KB minified
 
 ### Dependency
 
 - [Chevrotain](https://github.com/SAP/chevrotain) , thanks to this great parser building toolkit.
 
-### [Examples](https://github.com/LesterLyu/fast-formula-parser/blob/master/examples/example.js)
+### Build Outputs
+
+The package provides multiple build formats for different use cases:
+
+| Format | File | Size | Use Case |
+|--------|------|------|----------|
+| ESM | `build/index.mjs` | 228KB | Modern Node.js/bundlers |
+| CJS | `build/index.cjs` | 230KB | Legacy Node.js |
+| UMD | `build/index.umd.min.js` | 109KB | Browser globals |
+| IIFE | `build/index.iife.min.js` | 108KB | Direct browser use |
+| ESM Browser | `build/index.esm.min.js` | 108KB | Modern browsers |
+
+### [Examples](https://github.com/ChasLui/ts-formula-parser/blob/master/examples/example.js)
 
 - Install
 
   ```sh
-  npm i ts-formula-parser
-  # or using yarn
-  yarn add ts-formula-parser
-  # or using pnpm
+  # Using pnpm (recommended)
   pnpm add ts-formula-parser
+  
+  # Using npm
+  npm install ts-formula-parser
+  
+  # Using yarn
+  yarn add ts-formula-parser
   ```
 
-- Import
+- Import (ESM - Recommended)
 
   ```js
-  const FormulaParser = require("ts-formula-parser");
-  const { FormulaHelpers, Types, FormulaError, MAX_ROW, MAX_COLUMN } =
-    FormulaParser;
-  // or
+  // Default import with named exports
   import FormulaParser, {
     FormulaHelpers,
-    Types,
+    DepParser,
+    SSF,
     FormulaError,
     MAX_ROW,
     MAX_COLUMN,
   } from "ts-formula-parser";
+  
+  // Or named imports only
+  import { 
+    FormulaParser, 
+    FormulaHelpers, 
+    FormulaError 
+  } from "ts-formula-parser";
   ```
 
-  UMD minified build is also provides:
+- Import (CommonJS - Legacy)
+
+  ```js
+  const FormulaParser = require("ts-formula-parser");
+  const { FormulaHelpers, FormulaError, MAX_ROW, MAX_COLUMN } = FormulaParser;
+  ```
+
+- Browser Usage
 
   ```html
-  <script src="/node_modules/fast-formula-parser/build/parser.umd.min.js"></script>
+  <!-- UMD build -->
+  <script src="/node_modules/ts-formula-parser/build/index.umd.min.js"></script>
+  
+  <!-- ESM build -->
+  <script type="module">
+    import FormulaParser from '/node_modules/ts-formula-parser/build/index.mjs';
+  </script>
   ```
 
 - Basic Usage
@@ -210,16 +264,40 @@ Note: The grammar in my implementation is different from theirs. My implementati
       },
     },
   });
-  console.log(await parser.parseAsync("SUM(ROW_PLUS_COL(), 1)", position));
+  console.log(parser.parse("SUM(ROW_PLUS_COL(), 1)", position));
   // print 3
   ```
+
+### Development
+
+This project uses **pnpm** for package management and **unbuild** for creating multiple output formats.
+
+```bash
+# Install dependencies
+pnpm install
+
+# Run tests
+pnpm test
+
+# Build all formats
+pnpm build
+
+# Development build (stub mode)
+pnpm build:dev
+
+# Generate documentation
+pnpm run docs
+
+# Coverage report
+pnpm run coverage
+```
 
 - Parse Formula Dependency
 
   > This is helpful for building `dependency graph/tree`.
 
   ```js
-  import { DepParser } from "fast-formula-parser";
+  import { DepParser } from "ts-formula-parser";
   const depParser = new DepParser({
     // onVariable is the only thing you need provide if the formula contains variables
     onVariable: (variable) => {
@@ -316,9 +394,42 @@ Note: The grammar in my implementation is different from theirs. My implementati
   - `FormulaError.REF`: `#REF!`
   - `FormulaError.VALUE`: `#VALUE!`
 
-### Types Definition
+### TypeScript Support
 
-> Comming soon
+> Full TypeScript support with comprehensive type definitions
+
+```typescript
+import FormulaParser, { 
+  FormulaHelpers, 
+  FormulaError, 
+  MAX_ROW, 
+  MAX_COLUMN,
+  DepParser,
+  SSF 
+} from "ts-formula-parser";
+
+// All types are properly defined
+const parser = new FormulaParser({
+  onCell: ({ sheet, row, col }) => {
+    // TypeScript knows the exact shape of this object
+    return data[row - 1][col - 1];
+  },
+  
+  functions: {
+    CUSTOM_FUNC: (arg1: number, arg2: string): number => {
+      // Custom functions with proper typing
+      return FormulaHelpers.accept(arg1, 'number') as number;
+    }
+  }
+});
+
+// Parse with position context
+const result = parser.parse('SUM(A1:C3)', {
+  sheet: 'Sheet1',
+  row: 1, 
+  col: 1
+});
+```
 
 ### Error handling
 
@@ -367,6 +478,26 @@ Note: The grammar in my implementation is different from theirs. My implementati
   }
   ```
 
+### Migration from fast-formula-parser
+
+If you're migrating from `fast-formula-parser`, here are the key changes:
+
+1. **Package name**: `fast-formula-parser` → `ts-formula-parser`
+2. **ESM First**: Update your imports to use ES modules
+3. **Node.js version**: Requires Node.js >=22.0.0
+4. **TypeScript**: Full type definitions included
+5. **Bundle paths**: Updated build output paths
+
+```js
+// Old (fast-formula-parser)
+const FormulaParser = require('fast-formula-parser');
+
+// New (ts-formula-parser)
+import FormulaParser from 'ts-formula-parser';
+```
+
 ### Thanks
 
 - Forked from the [LesterLyu/fast-formula-parser](https://github.com/LesterLyu/fast-formula-parser) repo
+- Built with [Chevrotain](https://github.com/SAP/chevrotain) parser toolkit
+- Uses [unbuild](https://github.com/unjs/unbuild) for modern build system

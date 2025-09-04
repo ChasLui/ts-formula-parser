@@ -1,9 +1,9 @@
-const FormulaError = require('../error');
-const TextFunctions = require('./text');
-const {FormulaHelpers, Types} = require('../helpers');
+import FormulaError from '../error.js';
+import TextFunctions from './text.js';
+import {FormulaHelpers, Types} from '../helpers.js';
 const H = FormulaHelpers;
-const bessel = require("bessel");
-const jStat = require("jstat");
+import bessel from 'bessel';
+import jStat from 'jstat';
 const MAX_OCT = 536870911, // OCT2DEC(3777777777)
     MIN_OCT = -536870912, // OCT2DEC4000000000)
     MAX_HEX = 549755813887,
@@ -773,4 +773,4 @@ const EngineeringFunctions = {
     },
 };
 
-module.exports = EngineeringFunctions;
+export default EngineeringFunctions;

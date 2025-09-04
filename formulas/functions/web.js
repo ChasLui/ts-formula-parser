@@ -1,5 +1,5 @@
-const FormulaError = require('../error');
-const {FormulaHelpers, Types} = require('../helpers');
+import FormulaError from '../error.js';
+import {FormulaHelpers, Types} from '../helpers.js';
 const H = FormulaHelpers;
 
 const WebFunctions = {
@@ -40,4 +40,4 @@ const WebFunctions = {
     }
 }
 
-module.exports = WebFunctions;
+export default WebFunctions;

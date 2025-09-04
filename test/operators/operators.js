@@ -1,7 +1,7 @@
-const {FormulaParser} = require('../../grammar/hooks');
-const TestCase = require('./testcase');
-const {generateTests} = require('../utils');
-const FormulaError = require('../../formulas/error');
+import {FormulaParser} from '../../grammar/hooks.js';
+import TestCase from './testcase.js';
+import {generateTests} from '../utils.js';
+import FormulaError from '../../formulas/error.js';
 
 const data = [
     [1, 2, 3, 4, 5],

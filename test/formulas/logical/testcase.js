@@ -1,5 +1,5 @@
-const FormulaError = require('../../../formulas/error');
-module.exports = {
+import FormulaError from '../../../formulas/error.js';
+export default {
     AND: {
         'AND(A1)': FormulaError.VALUE,
         'AND(1,1,1)': true,

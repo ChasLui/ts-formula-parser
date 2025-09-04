@@ -1,5 +1,5 @@
-const FormulaError = require('./error');
-const Collection = require('../grammar/type/collection');
+import FormulaError from './error.js';
+import Collection from '../grammar/type/collection.js';
 
 const Types = {
     NUMBER: 0,
@@ -444,12 +444,5 @@ const Address = {
     },
 };
 
-module.exports = {
-    FormulaHelpers: H,
-    Types,
-    ReversedTypes,
-    Factorials,
-    WildCard,
-    Criteria,
-    Address,
-};
+// Export the helper instance
+export { H as FormulaHelpers, Types, ReversedTypes, Factorials, WildCard, Criteria, Address };

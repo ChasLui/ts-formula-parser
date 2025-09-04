@@ -1,5 +1,5 @@
 // const FormulaParser = require('fast-formula-parser');
-const FormulaParser = require('../index');
+import FormulaParser from '../index.js';
 const {FormulaHelpers, Types, FormulaError, MAX_ROW, MAX_COLUMN} = FormulaParser;
 
 const data = [

@@ -1,5 +1,5 @@
-const expect = require('chai').expect;
-module.exports = {
+import { expect } from 'chai';
+export const TestUtils = {
     generateTests: (parser, TestCase) => {
         const funs = Object.keys(TestCase);
 
@@ -24,3 +24,4 @@ module.exports = {
         });
     }
 };
+export const generateTests = TestUtils.generateTests;

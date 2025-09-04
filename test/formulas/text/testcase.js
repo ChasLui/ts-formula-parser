@@ -1,5 +1,5 @@
-const FormulaError = require('../../../formulas/error');
-module.exports = {
+import FormulaError from '../../../formulas/error.js';
+export default {
 
     ASC: {
         'ASC("ＡＢＣ")': "ABC",

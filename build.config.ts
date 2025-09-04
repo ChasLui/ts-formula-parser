@@ -18,7 +18,7 @@ function createNodeCjsMin() {
       output: {
         format: "cjs" as const,
         entryFileNames: "index.cjs.min.js",
-        exports: "default" as const,
+        exports: "named" as const,
       },
       esbuild: {
         platform: "node" as const,
@@ -47,7 +47,7 @@ function createBrowserBundle(format: BrowserFormat, minify = false) {
       inlineDependencies: true,
       output: {
         format,
-        ...(isNamed ? { name: PACKAGE_NAME, exports: "default" as const } : {}),
+        ...(isNamed ? { name: PACKAGE_NAME, exports: "named" as const } : {}),
         entryFileNames: fileName,
       },
       esbuild: {
