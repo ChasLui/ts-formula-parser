@@ -7,5 +7,6 @@ import './information/information.js';
 import './statistical/statistical.js';
 import './date/date.js';
 import './engineering/engineering.js';
+import './financial/financial.js';
 import './logical/logical.js';
 import './web/web.js';

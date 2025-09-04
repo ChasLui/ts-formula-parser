@@ -3,21 +3,15 @@ import {FormulaParser} from '../../../grammar/hooks.js';
 import TestCase from './testcase.js';
 import {generateTests} from '../../utils.js';
 
+// 提供一些测试数据，用于复杂的测试场景
 const data = [
-    ['fruit', 'price', 'count', 4, 5],
-    ['Apples', 0.69, 40, 5, 6],
-    ['Bananas', 0.34, 38, 5, 6],
-    ['Lemons', 0.55, 15, 5, 6],
-    ['Oranges', 0.25, 25, 5, 6],
-    ['Pears', 0.59, 40, 5, 6],
-    ['Almonds', 2.80, 10, 5, 6], // row 7
-    ['Cashews', 3.55, 16, 5, 6], // row 8
-    ['Peanuts', 1.25, 20, 5, 6], // row 9
-    ['Walnuts', 1.75, 12, 5, 6], // row 10
-
-    ['Apples', 'Lemons',0, 0, 0], // row 11
-    ['Bananas', 'Pears', 0, 0, 0], // row 12
+    ['Date', 'Rate', 'Value', 'Frequency'], // Header row
+    [41640, 0.1, 1000, 1],  // 2014-01-01
+    [41731, 0.05, 500, 2],  // 2014-04-01  
+    [41823, 0.08, 2000, 4], // 2014-07-01
+    [41914, 0.12, 1500, 1], // 2014-10-01
 ];
+
 const parser = new FormulaParser({
     onCell: ref => {
         return data[ref.row - 1][ref.col - 1];
@@ -35,6 +29,6 @@ const parser = new FormulaParser({
     }
 });
 
-describe('Lookup and Reference Functions', function () {
+describe('Financial Functions', function () {
     generateTests(parser, TestCase);
 });

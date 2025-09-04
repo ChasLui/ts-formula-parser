@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { expect, describe, it } from 'vitest';
 import {DepParser} from '../../grammar/dependency/hooks.js';
 
 const depParser = new DepParser({

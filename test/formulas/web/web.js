@@ -1,7 +1,7 @@
 import {FormulaParser} from '../../../grammar/hooks.js';
 import TestCase from './testcase.js';
 import {generateTests} from '../../utils.js';
-import { expect } from 'chai';
+import { expect, describe, it, beforeEach, afterEach } from 'vitest';
 import FormulaError from '../../../formulas/error.js';
 
 const data = [

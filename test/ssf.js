@@ -1,5 +1,4 @@
-import {describe, it} from 'mocha';
-import {expect} from 'chai';
+import { expect, describe, it } from 'vitest';
 import SSF from '../ssf/ssf.js';
 
 describe('SSF (Spreadsheet String Format)', () => {

@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { expect, describe, it } from 'vitest';
 import FormulaError from '../../formulas/error.js';
 import {FormulaParser} from '../../grammar/hooks.js';
 import {MAX_ROW, MAX_COLUMN} from '../../index.js';

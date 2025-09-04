@@ -1,6 +1,6 @@
 import FormulaError from '../error.js';
 import {FormulaHelpers as H, Types} from '../helpers.js';
-import {DATEVALUE, YEARFRAC} from './date.js';
+import DateFunctions from './date.js';
 
 const FinancialFunctions = {
     /**
@@ -13,13 +13,13 @@ const FinancialFunctions = {
 
         // Parse date string to serial
         if (typeof issue === "string") {
-            firstInterest = DATEVALUE(firstInterest);
+            issue = DateFunctions.DATEVALUE(issue);
         }
-        if (typeof issue === "string") {
-            issue = DATEVALUE(issue);
+        if (typeof firstInterest === "string") {
+            firstInterest = DateFunctions.DATEVALUE(firstInterest);
         }
-        if (typeof issue === "string") {
-            settlement = DATEVALUE(settlement);
+        if (typeof settlement === "string") {
+            settlement = DateFunctions.DATEVALUE(settlement);
         }
 
         rate = H.accept(rate, Types.NUMBER);
@@ -51,9 +51,19 @@ const FinancialFunctions = {
         if (issue >= settlement)
             return FormulaError.NUM;
 
+        // Calculate accrued interest
+        // If calc_method is TRUE or omitted, the accrued interest from issue date to settlement date
+        // If calc_method is FALSE, the accrued interest from first_interest date to settlement date
+        let startDate = calcMethod ? issue : firstInterest;
         
-
-
+        // Calculate the fraction of year
+        let yearFraction = DateFunctions.YEARFRAC(startDate, settlement, basis);
+        if (yearFraction instanceof FormulaError) {
+            return yearFraction;
+        }
+        
+        // ACCRINT = par × rate × year_fraction
+        return par * rate * yearFraction;
     }
 };
 

@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { expect, describe, it } from 'vitest';
 import Collection from '../../grammar/type/collection.js';
 
 describe('Collection', () => {

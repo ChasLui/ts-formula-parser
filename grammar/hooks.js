@@ -7,6 +7,7 @@ import ReferenceFunctions from '../formulas/functions/reference.js';
 import InformationFunctions from '../formulas/functions/information.js';
 import StatisticalFunctions from '../formulas/functions/statistical.js';
 import DateFunctions from '../formulas/functions/date.js';
+import FinancialFunctions from '../formulas/functions/financial.js';
 import WebFunctions from '../formulas/functions/web.js';
 import FormulaError from '../formulas/error.js';
 import {FormulaHelpers} from '../formulas/helpers.js';
@@ -45,12 +46,13 @@ class FormulaParser {
         DateFunctions._config.nullDate = config.nullDate;
         
         this.functions = Object.assign({}, DateFunctions, StatisticalFunctions, InformationFunctions, ReferenceFunctions,
-            EngFunctions, LogicalFunctions, TextFunctions, MathFunctions, TrigFunctions, WebFunctions,
+            EngFunctions, LogicalFunctions, TextFunctions, MathFunctions, TrigFunctions, FinancialFunctions, WebFunctions,
             config.functions, config.functionsNeedContext);
 
         // functions treat null as 0, other functions treats null as ""
         this.funsNullAs0 = Object.keys(MathFunctions)
             .concat(Object.keys(TrigFunctions))
+            .concat(Object.keys(FinancialFunctions))
             .concat(Object.keys(LogicalFunctions))
             .concat(Object.keys(EngFunctions))
             .concat(Object.keys(ReferenceFunctions))

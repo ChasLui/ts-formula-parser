@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { expect } from 'chai';
+import { expect, describe, it, beforeAll } from 'vitest';
 import {FormulaParser} from '../grammar/hooks.js';
 import fs from 'fs';
 import readline from 'readline';
@@ -15,36 +15,34 @@ describe.skip('Parsing Formulas 1', function () {
     let success = 0;
     const formulas = [];
     const failures = [];
-    before((done) => {
-        this.timeout(10000);
-        
-        const lineReader = readline.createInterface({
-            input: fs.createReadStream('./test/formulas.txt'),
-            crlfDelay: Infinity
+    beforeAll(async () => {
+        return new Promise((resolve, reject) => {
+            const lineReader = readline.createInterface({
+                input: fs.createReadStream('./test/formulas.txt'),
+                crlfDelay: Infinity
+            });
+            
+            lineReader.on('line', (line) => {
+                line = line.slice(1, -1)
+                    .replace(/""/g, '"');
+                if (line.indexOf('[') === -1)
+                    formulas.push(line);
+                // else
+                //     console.log(`not supported: ${line}`)
+                // console.log(line)
+            });
+            lineReader.on('close', () => {
+                lineReader.close();
+                resolve();
+            });
+            lineReader.on('error', (err) => {
+                console.error('Error reading formulas.txt:', err);
+                reject(err);
+            });
         });
-        
-        lineReader.on('line', (line) => {
-            line = line.slice(1, -1)
-                .replace(/""/g, '"');
-            if (line.indexOf('[') === -1)
-                formulas.push(line);
-            // else
-            //     console.log(`not supported: ${line}`)
-            // console.log(line)
-        });
-        lineReader.on('close', () => {
-            lineReader.close();
-            done();
-        });
-        lineReader.on('error', (err) => {
-            console.error('Error reading formulas.txt:', err);
-            done(err);
-        });
-
     });
 
     it('formulas parse rate should be 100%', function () {
-        this.timeout(20000);
         // console.log(formulas.length);
         formulas.forEach((formula, index) => {
             // console.log('testing #', index, formula);
@@ -71,18 +69,22 @@ describe('Parsing Formulas 2', () => {
     let success = 0;
     let formulas;
     const failures = [];
-    before(done => {
-        fs.readFile('./test/formulas2.json', (err, data) => {
-            if (err) throw err;
-            formulas = JSON.parse(data.toString());
-            done();
+    beforeAll(async () => {
+        return new Promise((resolve, reject) => {
+            fs.readFile('./test/formulas2.json', (err, data) => {
+                if (err) {
+                    reject(err);
+                    return;
+                }
+                formulas = JSON.parse(data.toString());
+                resolve();
+            });
         });
     });
 
     it ('skip', () => '');
 
-    it('custom formulas parse rate should be 100%',  function(done) {
-        this.timeout(20000);
+    it('custom formulas parse rate should be 100%',  function() {
         formulas.forEach((formula, index)  => {
             // console.log('testing #', index, formula);
             try {
@@ -100,16 +102,16 @@ describe('Parsing Formulas 2', () => {
         const logs = parser.logs.sort();
         console.log(`The following functions is not implemented: (${logs.length} in total)\n ${logs.join(', ')}`);
         parser.logs = [];
-        done();
     });
 
 });
 
 describe('Get supported formulas', () => {
-    const functionsNames =  parser.supportedFunctions();
-    expect(functionsNames.length).to.greaterThan(275);
-    console.log(`Support ${functionsNames.length} functions:\n${functionsNames.join(', ')}`);
-    expect(functionsNames.includes('IFNA')).to.eq(true);
-    expect(functionsNames.includes('SUMIF')).to.eq(true);
-
+    it('should support more than 275 functions', () => {
+        const functionsNames =  parser.supportedFunctions();
+        expect(functionsNames.length).to.greaterThan(275);
+        console.log(`Support ${functionsNames.length} functions:\n${functionsNames.join(', ')}`);
+        expect(functionsNames.includes('IFNA')).to.eq(true);
+        expect(functionsNames.includes('SUMIF')).to.eq(true);
+    });
 })

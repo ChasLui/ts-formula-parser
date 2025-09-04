@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { expect, it } from 'vitest';
 export const TestUtils = {
     generateTests: (parser, TestCase) => {
         const funs = Object.keys(TestCase);
