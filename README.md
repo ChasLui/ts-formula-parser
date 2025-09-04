@@ -360,29 +360,29 @@ pnpm run coverage
 - Array: `[[1, 2, true, 'str']]`
 - Range Reference: (1-based index)
 
-       ```js
-       const ref = {
-           sheet: String,
-           from: {
-               row: Number,
-               col: Number,
-           },
-           to: {
-               row: Number,
-               col: Number,
-           },
-       }
-       ```
+  ```js
+  const ref = {
+      sheet: String,
+      from: {
+          row: Number,
+          col: Number,
+      },
+      to: {
+          row: Number,
+          col: Number,
+      },
+  }
+  ```
 
 - Cell Reference: (1-based index)
 
-       ```js
-       const ref = {
-           sheet: String,
-           row: Number,
-           col: Number,
-       }
-       ```
+  ```js
+  const ref = {
+      sheet: String,
+      row: Number,
+      col: Number,
+  }
+  ```
 
 - [Union (e.g. (A1:C3, E1:G6))](https://github.com/LesterLyu/fast-formula-parser/blob/master/grammar/type/collection.js)
 - [FormulaError](https://lesterlyu.github.io/fast-formula-parser/FormulaError.html)

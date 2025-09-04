@@ -295,29 +295,29 @@ SUMX2PY2, SUMXMY2, T, T.DIST, T.DIST.2T, T.DIST.RT, T.INV, T.INV.2T, TAN, TANH, 
 - 数组：`[[1, 2, true, 'str']]`
 - 范围引用：（基于 1 的索引）
 
-       ```js
-       const ref = {
-           sheet: String,
-           from: {
-               row: Number,
-               col: Number,
-           },
-           to: {
-               row: Number,
-               col: Number,
-           },
-       }
-       ```
+  ```js
+    const ref = {
+        sheet: String,
+        from: {
+            row: Number,
+            col: Number,
+        },
+        to: {
+            row: Number,
+            col: Number,
+        },
+    }
+  ```
 
 - 单元格引用：（基于 1 的索引）
 
-       ```js
-       const ref = {
-           sheet: String,
-           row: Number,
-           col: Number,
-       }
-       ```
+  ```js
+  const ref = {
+      sheet: String,
+      row: Number,
+      col: Number,
+  }
+  ```
 
 - [联合体（例如 (A1:C3, E1:G6)）](https://github.com/LesterLyu/fast-formula-parser/blob/master/grammar/type/collection.js)
 - [FormulaError](https://lesterlyu.github.io/fast-formula-parser/FormulaError.html)
