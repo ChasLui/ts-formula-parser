@@ -27,7 +27,9 @@
 
 ### 支持 283+ 种公式
 
-```
+<!-- cspell:disable -->
+
+```text
 ABS, ACOS, ACOSH, ACOT, ACOTH, ADDRESS, AND, ARABIC, AREAS, ASC, ASIN, ASINH, ATAN, ATAN2, ATANH, AVEDEV, AVERAGE, AVERAGEA, AVERAGEIF, BAHTTEXT, BASE, BESSELI, BESSELJ, BESSELK, BESSELY, BETA.DIST, BETA.INV, BIN2DEC, BIN2HEX, BIN2OCT, BINOM.DIST, BINOM.DIST.RANGE, BINOM.INV, BITAND, BITLSHIFT, BITOR,
 BITRSHIFT, BITXOR, CEILING, CEILING.MATH, CEILING.PRECISE, CHAR, CHISQ.DIST, CHISQ.DIST.RT, CHISQ.INV, CHISQ.INV.RT, CHISQ.TEST, CLEAN, CODE, COLUMN, COLUMNS, COMBIN, COMBINA, COMPLEX, CONCAT, CONCATENATE, CONFIDENCE.NORM, CONFIDENCE.T, CORREL, COS, COSH, COT, COTH, COUNT, COUNTIF, COVARIANCE.P,
 COVARIANCE.S, CSC, CSCH, DATE, DATEDIF, DATEVALUE, DAY, DAYS, DAYS360, DBCS, DEC2BIN, DEC2HEX, DEC2OCT, DECIMAL, DEGREES, DELTA, DEVSQ, DOLLAR, EDATE, ENCODEURL, EOMONTH, ERF, ERFC, ERROR.TYPE, EVEN, EXACT, EXP, EXPON.DIST, F.DIST, F.DIST.RT, F.INV, F.INV.RT, F.TEST, FACT, FACTDOUBLE, FALSE, FIND, FINDB,
@@ -37,6 +39,7 @@ KURT, LCM, LEFT, LEFTB, LN, LOG, LOG10, LOGNORM.DIST, LOGNORM.INV, LOWER, MDETER
 PHI, PI, POISSON.DIST, POWER, PRODUCT, PROPER, QUOTIENT, RADIANS, RAND, RANDBETWEEN, REPLACE, REPLACEB, REPT, RIGHT, RIGHTB, ROMAN, ROUND, ROUNDDOWN, ROUNDUP, ROW, ROWS, SEARCH, SEARCHB, SEC, SECH, SECOND, SERIESSUM, SIGN, SIN, SINH, SQRT, SQRTPI, STANDARDIZE, SUM, SUMIF, SUMPRODUCT, SUMSQ, SUMX2MY2,
 SUMX2PY2, SUMXMY2, T, T.DIST, T.DIST.2T, T.DIST.RT, T.INV, T.INV.2T, TAN, TANH, TEXT, TIME, TIMEVALUE, TODAY, TRANSPOSE, TRIM, UPPER, TRUE, TRUNC, TYPE, UNICHAR, UNICODE, VLOOKUP, WEBSERVICE, WEEKDAY, WEEKNUM, WEIBULL.DIST, WORKDAY, WORKDAY.INTL, XOR, YEAR, YEARFRAC
 ```
+<!-- cspell:enable -->
 
 ### 包大小
 
@@ -64,6 +67,7 @@ SUMX2PY2, SUMXMY2, T, T.DIST, T.DIST.2T, T.DIST.RT, T.INV, T.INV.2T, TAN, TANH, 
 - 所有测试文件都用 TypeScript 编写以获得更好的类型安全性
 
 主要测试命令：
+
 ```bash
 # 运行所有测试
 pnpm test
@@ -81,7 +85,7 @@ pnpm run coverage
 ### 背景
 
 灵感来自 [XLParser](https://github.com/spreadsheetlab/XLParser/blob/master/src/XLParser/ExcelFormulaGrammar.cs)
-和论文 ["A Grammar for Spreadsheet Formulas Evaluated on Two Large Datasets" by Efthimia Aivaloglou, David Hoepelman and Felienne Hermans](https://fenia266781730.files.wordpress.com/2019/01/07335408.pdf)。
+和论文 ["A Grammar for Spreadsheet Formulas Evaluated on Two Large Datasets" by <!-- cspell:disable-line -->Efthimia Aivaloglou, David Hoepelman and Felienne Hermans](https://fenia266781730.files.wordpress.com/2019/01/07335408.pdf)。
 
 注意：我的实现中的语法与他们的不同。我的实现去除了歧义以提升性能。
 
@@ -122,9 +126,9 @@ pnpm run coverage
 **核心依赖：**
 
 - `chevrotain`: 解析器构建工具包（词法分析/解析）
-- `jstat`: 统计函数
+- <!-- cspell:disable-line -->`jstat`: 统计函数
 - `bessel`: 数学函数
-- `bahttext`: 文本格式化工具
+- <!-- cspell:disable-line -->`bahttext`: 文本格式化工具
 
 **开发依赖：**
 
@@ -264,6 +268,7 @@ pnpm run coverage
   // 输出 21
 
   // 你可以指定返回值是否可以是数组，这在处理数组公式时很有用
+  <!-- cspell:disable-next-line -->
   console.log(parser.parse("MMULT({1,5;2,3},{1,2;2,3})", position, true));
   // 输出 [ [ 11, 17 ], [ 8, 13 ] ]
   ```
