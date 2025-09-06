@@ -18,7 +18,7 @@ function createNodeCjsMin() {
       output: {
         format: "cjs" as const,
         entryFileNames: "index.cjs.min.js",
-        exports: "named" as const,
+        exports: "auto" as const,
       },
       esbuild: {
         platform: "node" as const,
@@ -48,7 +48,18 @@ function createBrowserBundle(format: BrowserFormat, minify = false) {
       inlineDependencies: true,
       output: {
         format,
-        ...(isNamed ? { name: PACKAGE_NAME, exports: "named" as const } : {}),
+        ...(isNamed ? { 
+          name: PACKAGE_NAME, 
+          exports: "auto" as const,
+          globals: {
+            'bahttext': 'bahttext',
+            'bessel': 'bessel', 
+            'jstat': 'jStat',
+            'chevrotain': 'chevrotain'
+          }
+        } : { 
+          exports: "auto" as const 
+        }),
         entryFileNames: fileName,
       },
       esbuild: {
@@ -69,6 +80,9 @@ export default defineBuildConfig([
     declaration: false,
     rollup: {
       emitCJS: true,
+      output: {
+        exports: "auto" as const,
+      },
     },
   },
   // Node CJS minified

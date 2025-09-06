@@ -33,7 +33,7 @@
     "test:f": "vitest run test/formulas",
     "test:watch": "vitest",
     "prepublishOnly": "npm run build && npm run test",
-    "postpublish": "npm run publish:docs",
+    "postpublish": "echo 'Published successfully! Documentation will be updated by GitHub Actions.'",
     "build": "unbuild",
     "build:dev": "unbuild --stub",
     "typecheck": "tsc --noEmit",
