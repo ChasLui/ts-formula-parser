@@ -36,13 +36,19 @@
     "postpublish": "npm run publish:docs",
     "build": "unbuild",
     "build:dev": "unbuild --stub",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext .ts --fix",
+    "lint:check": "eslint . --ext .ts",
     "analyze": "echo 'bundle analyze is not supported by unbuild directly'",
     "diagram": "node grammar/diagram.js",
     "docs": "npm run diagram && jsdoc --configure .jsdoc.json --verbose",
     "publish:docs": "npm run docs && npm run coverage && gh-pages -d docs",
     "coverage": "vitest run --coverage",
     "coverage:f": "vitest run test/formulas --coverage",
-    "coverage:server": "vitest run --coverage --reporter=lcov | coveralls"
+    "coverage:server": "vitest run --coverage --reporter=lcov | coveralls",
+    "perf": "node scripts/perf-test.mjs",
+    "dev": "npm run build:dev && npm run test:watch",
+    "ci": "npm run typecheck && npm run test && npm run build"
   },
   "keywords": [
     "excel",

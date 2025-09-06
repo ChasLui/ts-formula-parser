@@ -2,23 +2,23 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
-    // 测试文件模式
-    include: ['test/**/*.js'],
-    // 排除测试数据文件和工具文件
-    exclude: ['**/testcase.js', 'test/utils.js', 'test/formulas/index.js', 'node_modules/**'],
-    // 全局超时设置
+    // Test file pattern
+    include: ['test/**/*.ts'],
+    // Exclude test data files and utility files
+    exclude: ['**/testcase.ts', 'test/utils.ts', 'test/formulas/index.ts', 'node_modules/**'],
+    // Global timeout settings
     testTimeout: 20000,
     hookTimeout: 10000,
-    // 覆盖率配置
+    // Coverage configuration
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html', 'lcov'],
       reportsDirectory: 'docs/coverage',
       include: [
         'formulas/functions/**',
-        'formulas/operators.js',
+        'formulas/operators.ts',
         'grammar/**',
-        'index.js'
+        'index.ts'
       ],
       exclude: [
         'test/**',
@@ -27,11 +27,11 @@ export default defineConfig({
         '*.config.js'
       ]
     },
-    // 环境配置
+    // Environment configuration
     environment: 'node',
-    // 设置globals为false，保持显式导入
+    // Set globals to false, maintain explicit imports
     globals: false,
-    // 支持ESM模块
+    // Support ESM modules
     pool: 'forks'
   }
 });

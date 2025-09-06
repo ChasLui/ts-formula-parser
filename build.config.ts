@@ -1,6 +1,6 @@
 import { defineBuildConfig } from "unbuild";
 
-const ENTRIES = ["./index"] as const;
+const ENTRIES = ["./index.ts"] as const;
 const OUT_DIR = "build" as const;
 const PACKAGE_NAME = "FormulaParser" as const;
 
@@ -24,6 +24,7 @@ function createNodeCjsMin() {
         platform: "node" as const,
         target: NODE_TARGET,
         minify: true,
+        treeShaking: true,
       },
     },
   } as const;
@@ -60,7 +61,7 @@ function createBrowserBundle(format: BrowserFormat, minify = false) {
 }
 
 export default defineBuildConfig([
-  // Node: emit ESM + CJS (main/module/exports 对应)
+  // Node: emit ESM + CJS (corresponding to main/module/exports)
   {
     entries: ENTRIES as unknown as string[],
     outDir: OUT_DIR,
