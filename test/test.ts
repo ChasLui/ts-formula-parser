@@ -11,7 +11,7 @@ import './formulas/index';
 
 const parser = new FormulaParser(undefined, true);
 
-describe.skip('Parsing Formulas 1', function () {
+describe('Parsing Formulas 1', function () {
     let success = 0;
     const formulas: string[] = [];
     const failures: string[] = [];
