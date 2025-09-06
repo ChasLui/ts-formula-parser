@@ -1,6 +1,6 @@
 {
   "name": "ts-formula-parser",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "excel formula parser based on typescript",
   "repository": "https://github.com/ChasLui/ts-formula-parser",
   "type": "module",
