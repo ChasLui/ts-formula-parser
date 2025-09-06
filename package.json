@@ -40,7 +40,7 @@
     "lint": "eslint . --ext .ts --fix",
     "lint:check": "eslint . --ext .ts",
     "analyze": "echo 'bundle analyze is not supported by unbuild directly'",
-    "diagram": "node grammar/diagram.js",
+    "diagram": "npx tsx grammar/diagram.ts",
     "docs": "npm run diagram && jsdoc --configure .jsdoc.json --verbose",
     "publish:docs": "npm run docs && npm run coverage && gh-pages -d docs",
     "coverage": "vitest run --coverage",

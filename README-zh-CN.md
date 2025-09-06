@@ -6,7 +6,7 @@
 
 ## [快速的 Excel 公式解析器和求值器](https://github.com/ChasLui/ts-formula-parser)
 
-[英文](./README.md) | 中文
+[English](./README.md) | 中文简体
 
 一个快速且可靠的 TypeScript/JavaScript Excel 公式解析器，完全支持 **ESM**。使用 **LL(1)** 解析器。
 
@@ -14,7 +14,7 @@
 
 - ✅ **ESM 优先**: 原生 ES Module 支持，包含 TypeScript 定义
 - ⚡ **高性能**: 比其他公式解析器快 3 倍
-- 🧮 **287个 Excel 函数**: 全面的 Excel 函数支持
+- 🧮 **283+ Excel 函数**: 全面的 Excel 函数支持
 - 🏗️ **多种构建格式**: ESM、CJS、UMD、IIFE 及其压缩版本
 - 🔒 **类型安全**: 完整的 TypeScript 支持和详细的类型定义
 - 📦 **零配置**: 在现代 Node.js (>=22.0.0) 中开箱即用
@@ -25,7 +25,7 @@
 
 ### [语法图表](https://chaslui.github.io/ts-formula-parser/generated_diagrams.html)
 
-### 支持 287 种公式
+### 支持 283+ 种公式
 
 ```
 ABS, ACOS, ACOSH, ACOT, ACOTH, ADDRESS, AND, ARABIC, AREAS, ASC, ASIN, ASINH, ATAN, ATAN2, ATANH, AVEDEV, AVERAGE, AVERAGEA, AVERAGEIF, BAHTTEXT, BASE, BESSELI, BESSELJ, BESSELK, BESSELY, BETA.DIST, BETA.INV, BIN2DEC, BIN2HEX, BIN2OCT, BINOM.DIST, BINOM.DIST.RANGE, BINOM.INV, BITAND, BITLSHIFT, BITOR,
@@ -38,13 +38,45 @@ PHI, PI, POISSON.DIST, POWER, PRODUCT, PROPER, QUOTIENT, RADIANS, RAND, RANDBETW
 SUMX2PY2, SUMXMY2, T, T.DIST, T.DIST.2T, T.DIST.RT, T.INV, T.INV.2T, TAN, TANH, TEXT, TIME, TIMEVALUE, TODAY, TRANSPOSE, TRIM, UPPER, TRUE, TRUNC, TYPE, UNICHAR, UNICODE, VLOOKUP, WEBSERVICE, WEEKDAY, WEEKNUM, WEIBULL.DIST, WORKDAY, WORKDAY.INTL, XOR, YEAR, YEARFRAC
 ```
 
-### 包大小: 108KB 压缩版，~30KB Gzip 压缩版
+### 包大小
+
+| 格式 | 未压缩 | 压缩版 | Gzip+压缩版 |
+|------|---------|--------|-------------|
+| ESM | 228KB | 108KB | ~30KB |
+| CJS | 230KB | 121KB | ~32KB |
+| UMD | 258KB | 109KB | ~30KB |
+| IIFE | 258KB | 108KB | ~30KB |
 
 ### 系统要求
 
 - **Node.js**: >=22.0.0
 - **包管理器**: npm、yarn 或 **pnpm**（推荐）
 - **模块系统**: ESM（ES 模块）- 通过构建输出也支持 CommonJS
+
+### 测试框架
+
+本项目使用 **Vitest** 作为测试框架：
+
+- 主要测试文件位于 `test/` 目录
+- 公式特定测试位于 `test/formulas/`
+- 使用 `@vitest/coverage-v8` 进行覆盖率报告
+- 测试数据存储在 JSON 文件中（例如 `test/formulas2.json`）
+- 所有测试文件都用 TypeScript 编写以获得更好的类型安全性
+
+主要测试命令：
+```bash
+# 运行所有测试
+pnpm test
+
+# 运行公式特定测试
+pnpm test:f
+
+# 以监听模式运行测试
+pnpm test:watch
+
+# 生成覆盖率报告
+pnpm run coverage
+```
 
 ### 背景
 
@@ -65,44 +97,95 @@ SUMX2PY2, SUMXMY2, T, T.DIST, T.DIST.2T, T.DIST.RT, T.INV, T.INV.2T, TAN, TANH, 
 
 ### 性能
 
-- 预期性能至少比优化后的 [formula-parser](https://github.com/LesterLyu/formula-parser) 快 3 倍。
+- **快 3 倍**: 比优化后的 [formula-parser](https://github.com/LesterLyu/formula-parser) 快 3 倍
+- **LL(1) 解析**: 最优性能的解析算法
+- **优化的包大小**: 各种构建格式都经过优化：
+  - ESM: 228KB / 108KB 压缩版
+  - CJS: 230KB / 121KB 压缩版  
+  - UMD: 258KB / 109KB 压缩版
+  - IIFE: 258KB / 108KB 压缩版
+
+### 构建输出
+
+该包为不同用例提供多种构建格式：
+
+| 格式 | 文件 | 大小 | 用途 |
+|------|------|------|------|
+| ESM | `build/index.mjs` | 228KB | 现代 Node.js/打包工具 |
+| CJS | `build/index.cjs` | 230KB | 传统 Node.js |
+| UMD | `build/index.umd.min.js` | 109KB | 浏览器全局变量 |
+| IIFE | `build/index.iife.min.js` | 108KB | 直接浏览器使用 |
+| ESM Browser | `build/index.esm.min.js` | 108KB | 现代浏览器 |
 
 ### 依赖项
 
-- [Chevrotain](https://github.com/SAP/chevrotain) ，感谢这个出色的解析器构建工具包。
+**核心依赖：**
 
-### [示例](https://github.com/LesterLyu/fast-formula-parser/blob/master/examples/example.js)
+- `chevrotain`: 解析器构建工具包（词法分析/解析）
+- `jstat`: 统计函数
+- `bessel`: 数学函数
+- `bahttext`: 文本格式化工具
+
+**开发依赖：**
+
+- `vitest` + `@vitest/coverage-v8`: 测试框架和覆盖率报告
+- `unbuild`: 构建系统
+- `typescript`: 类型定义
+- `jsdoc`: 文档生成
+
+### 示例
 
 - 安装
 
   ```sh
-  npm i ts-formula-parser
-  # 或使用 yarn
-  yarn add ts-formula-parser
-  # 或使用 pnpm
+  # 使用 pnpm（推荐）
   pnpm add ts-formula-parser
+  
+  # 使用 npm
+  npm install ts-formula-parser
+  
+  # 使用 yarn
+  yarn add ts-formula-parser
   ```
 
-- 导入
+- 导入（ESM - 推荐）
 
   ```js
-  const FormulaParser = require("ts-formula-parser");
-  const { FormulaHelpers, Types, FormulaError, MAX_ROW, MAX_COLUMN } =
-    FormulaParser;
-  // 或者
+  // 默认导入和命名导出
   import FormulaParser, {
     FormulaHelpers,
-    Types,
+    DepParser,
+    SSF,
     FormulaError,
     MAX_ROW,
     MAX_COLUMN,
   } from "ts-formula-parser";
+  
+  // 或只使用命名导入
+  import { 
+    FormulaParser, 
+    FormulaHelpers, 
+    FormulaError 
+  } from "ts-formula-parser";
   ```
 
-  同时提供 UMD 压缩版本：
+- 导入（CommonJS - 旧版）
+
+  ```js
+  const FormulaParser = require("ts-formula-parser");
+  const { FormulaHelpers, FormulaError, MAX_ROW, MAX_COLUMN } = FormulaParser;
+  ```
+
+- 浏览器使用
 
   ```html
-  <script src="/node_modules/fast-formula-parser/build/parser.umd.min.js"></script>
+  <!-- UMD 构建 -->
+  <script src="/node_modules/ts-formula-parser/build/index.umd.min.js"></script>
+  
+  <!-- ESM 构建 -->
+  <script type="module">
+    import FormulaParser from '/node_modules/ts-formula-parser/build/index.mjs';
+  </script>
   ```
 
 - 基本用法
@@ -118,7 +201,7 @@ SUMX2PY2, SUMXMY2, T, T.DIST, T.DIST.2T, T.DIST.RT, T.INV, T.INV.2T, TAN, TANH, 
     // 外部函数，这将覆盖同名的内部函数
     functions: {
       CHAR: (number) => {
-        number = FormulaHelpers.accept(number, Types.NUMBER);
+        number = FormulaHelpers.accept(number, 'number');
         if (number > 255 || number < 1) throw FormulaError.VALUE;
         return String.fromCharCode(number);
       },
@@ -223,7 +306,7 @@ SUMX2PY2, SUMXMY2, T, T.DIST, T.DIST.2T, T.DIST.RT, T.INV, T.INV.2T, TAN, TANH, 
       },
     },
   });
-  console.log(await parser.parseAsync("SUM(ROW_PLUS_COL(), 1)", position));
+  console.log(parser.parse("SUM(ROW_PLUS_COL(), 1)", position));
   // 输出 3
   ```
 
@@ -232,7 +315,7 @@ SUMX2PY2, SUMXMY2, T, T.DIST, T.DIST.2T, T.DIST.RT, T.INV, T.INV.2T, TAN, TANH, 
   > 这对构建 `依赖图/树` 很有帮助。
 
   ```js
-  import { DepParser } from "fast-formula-parser";
+  import { DepParser } from "ts-formula-parser";
   const depParser = new DepParser({
     // 如果公式包含变量，onVariable 是你唯一需要提供的
     onVariable: (variable) => {
@@ -329,9 +412,42 @@ SUMX2PY2, SUMXMY2, T, T.DIST, T.DIST.2T, T.DIST.RT, T.INV, T.INV.2T, TAN, TANH, 
   - `FormulaError.REF`：`#REF!`
   - `FormulaError.VALUE`：`#VALUE!`
 
-### 类型定义
+### TypeScript 支持
 
-> 即将推出
+> 完整的 TypeScript 支持和全面的类型定义
+
+```typescript
+import FormulaParser, { 
+  FormulaHelpers, 
+  FormulaError, 
+  MAX_ROW, 
+  MAX_COLUMN,
+  DepParser,
+  SSF 
+} from "ts-formula-parser";
+
+// 所有类型都有正确的定义
+const parser = new FormulaParser({
+  onCell: ({ sheet, row, col }) => {
+    // TypeScript 知道此对象的确切形状
+    return data[row - 1][col - 1];
+  },
+  
+  functions: {
+    CUSTOM_FUNC: (arg1: number, arg2: string): number => {
+      // 具有正确类型的自定义函数
+      return FormulaHelpers.accept(arg1, 'number') as number;
+    }
+  }
+});
+
+// 使用位置上下文解析
+const result = parser.parse('SUM(A1:C3)', {
+  sheet: 'Sheet1',
+  row: 1, 
+  col: 1
+});
+```
 
 ### 错误处理
 
@@ -380,6 +496,65 @@ SUMX2PY2, SUMXMY2, T, T.DIST, T.DIST.2T, T.DIST.RT, T.INV, T.INV.2T, TAN, TANH, 
   }
   ```
 
+### 开发
+
+本项目使用 **pnpm** 进行包管理，**TypeScript** 确保类型安全，**Vitest** 进行测试，**unbuild** 创建多种输出格式。
+
+```bash
+# 安装依赖
+pnpm install
+
+# 运行测试（使用 Vitest）
+pnpm test
+
+# 监听模式运行测试
+pnpm test:watch
+
+# 构建所有格式
+pnpm build
+
+# 开发构建（stub 模式）
+pnpm build:dev
+
+# 类型检查
+pnpm typecheck
+
+# 代码检查
+pnpm lint
+
+# 生成文档
+pnpm run docs
+
+# 覆盖率报告
+pnpm run coverage
+
+# 性能测试
+pnpm run perf
+
+# CI 流水线（类型检查 + 测试 + 构建）
+pnpm run ci
+```
+
+### 从 fast-formula-parser 迁移
+
+如果你正在从 `fast-formula-parser` 迁移，以下是主要变更：
+
+1. **包名**: `fast-formula-parser` → `ts-formula-parser`
+2. **ESM 优先**: 更新你的导入以使用 ES 模块
+3. **Node.js 版本**: 需要 Node.js >=22.0.0
+4. **TypeScript**: 包含完整的类型定义
+5. **构建路径**: 更新的构建输出路径
+
+```js
+// 旧版（fast-formula-parser）
+const FormulaParser = require('fast-formula-parser');
+
+// 新版（ts-formula-parser）
+import FormulaParser from 'ts-formula-parser';
+```
+
 ### 致谢
 
 - 从 [LesterLyu/fast-formula-parser](https://github.com/LesterLyu/fast-formula-parser) 仓库 Fork 而来
+- 使用 [Chevrotain](https://github.com/SAP/chevrotain) 解析器工具包构建
+- 使用 [unbuild](https://github.com/unjs/unbuild) 现代构建系统

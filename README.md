@@ -6,7 +6,7 @@
 
 ## [A Fast Excel Formula Parser & Evaluator](https://github.com/ChasLui/ts-formula-parser)
 
-English | [Chinese](./README-zh-CN.md)
+English | [中文简体](./README-zh-CN.md)
 
 A fast and reliable excel formula parser in TypeScript/JavaScript with full **ESM** support. Using **LL(1)** parser.
 
@@ -14,7 +14,7 @@ A fast and reliable excel formula parser in TypeScript/JavaScript with full **ES
 
 - ✅ **ESM First**: Native ES Module support with TypeScript definitions
 - ⚡ **High Performance**: 3x faster than other formula parsers
-- 🧮 **287 Excel Functions**: Comprehensive Excel function support
+- 🧮 **283+ Excel Functions**: Comprehensive Excel function support
 - 🏗️ **Multiple Build Formats**: ESM, CJS, UMD, IIFE with minified versions
 - 🔒 **Type Safe**: Full TypeScript support with detailed type definitions
 - 📦 **Zero Config**: Works out-of-the-box with modern Node.js (>=22.0.0)
@@ -25,7 +25,7 @@ A fast and reliable excel formula parser in TypeScript/JavaScript with full **ES
 
 ### [Grammar Diagram](https://chaslui.github.io/ts-formula-parser/generated_diagrams.html)
 
-### Supports 287 Formulas
+### Supports 283+ Formulas
 
 ```
 ABS, ACOS, ACOSH, ACOT, ACOTH, ADDRESS, AND, ARABIC, AREAS, ASC, ASIN, ASINH, ATAN, ATAN2, ATANH, AVEDEV, AVERAGE, AVERAGEA, AVERAGEIF, BAHTTEXT, BASE, BESSELI, BESSELJ, BESSELK, BESSELY, BETA.DIST, BETA.INV, BIN2DEC, BIN2HEX, BIN2OCT, BINOM.DIST, BINOM.DIST.RANGE, BINOM.INV, BITAND, BITLSHIFT, BITOR,
@@ -38,13 +38,45 @@ PHI, PI, POISSON.DIST, POWER, PRODUCT, PROPER, QUOTIENT, RADIANS, RAND, RANDBETW
 SUMX2PY2, SUMXMY2, T, T.DIST, T.DIST.2T, T.DIST.RT, T.INV, T.INV.2T, TAN, TANH, TEXT, TIME, TIMEVALUE, TODAY, TRANSPOSE, TRIM, UPPER, TRUE, TRUNC, TYPE, UNICHAR, UNICODE, VLOOKUP, WEBSERVICE, WEEKDAY, WEEKNUM, WEIBULL.DIST, WORKDAY, WORKDAY.INTL, XOR, YEAR, YEARFRAC
 ```
 
-### Bundle Size: 108KB Minified, ~30KB Gzipped+Minified
+### Bundle Sizes
+
+| Format | Uncompressed | Minified | Gzipped+Minified |
+|--------|-------------|----------|------------------|
+| ESM | 228KB | 108KB | ~30KB |
+| CJS | 230KB | 121KB | ~32KB |
+| UMD | 258KB | 109KB | ~30KB |
+| IIFE | 258KB | 108KB | ~30KB |
 
 ### Requirements
 
 - **Node.js**: >=22.0.0
 - **Package Manager**: npm, yarn, or **pnpm** (recommended)
 - **Module System**: ESM (ES Modules) - CommonJS also supported via build outputs
+
+### Testing Framework
+
+This project uses **Vitest** as the testing framework:
+
+- Main test files located in `test/` directory
+- Formula-specific tests located in `test/formulas/`
+- Uses `@vitest/coverage-v8` for coverage reporting
+- Test data stored in JSON files (e.g., `test/formulas2.json`)
+- All test files are written in TypeScript for better type safety
+
+Key testing commands:
+```bash
+# Run all tests
+pnpm test
+
+# Run formula-specific tests
+pnpm test:f
+
+# Run tests in watch mode
+pnpm test:watch
+
+# Generate coverage report
+pnpm run coverage
+```
 
 ### Background
 
@@ -89,7 +121,7 @@ The package provides multiple build formats for different use cases:
 | IIFE | `build/index.iife.min.js` | 108KB | Direct browser use |
 | ESM Browser | `build/index.esm.min.js` | 108KB | Modern browsers |
 
-### [Examples](https://github.com/ChasLui/ts-formula-parser/blob/master/examples/example.js)
+### Examples
 
 - Install
 
@@ -157,7 +189,7 @@ The package provides multiple build formats for different use cases:
     // External functions, this will override internal functions with same name
     functions: {
       CHAR: (number) => {
-        number = FormulaHelpers.accept(number, Types.NUMBER);
+        number = FormulaHelpers.accept(number, 'number');
         if (number > 255 || number < 1) throw FormulaError.VALUE;
         return String.fromCharCode(number);
       },
@@ -270,14 +302,17 @@ The package provides multiple build formats for different use cases:
 
 ### Development
 
-This project uses **pnpm** for package management and **unbuild** for creating multiple output formats.
+This project uses **pnpm** for package management, **TypeScript** for type safety, **Vitest** for testing, and **unbuild** for creating multiple output formats.
 
 ```bash
 # Install dependencies
 pnpm install
 
-# Run tests
+# Run tests (using Vitest)
 pnpm test
+
+# Run tests in watch mode
+pnpm test:watch
 
 # Build all formats
 pnpm build
@@ -285,11 +320,23 @@ pnpm build
 # Development build (stub mode)
 pnpm build:dev
 
+# Type checking
+pnpm typecheck
+
+# Lint code
+pnpm lint
+
 # Generate documentation
 pnpm run docs
 
 # Coverage report
 pnpm run coverage
+
+# Performance test
+pnpm run perf
+
+# CI pipeline (typecheck + test + build)
+pnpm run ci
 ```
 
 - Parse Formula Dependency
